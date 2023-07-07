@@ -14,14 +14,6 @@ namespace PasswordManager.View.UserControls
             InitializeComponent();
         }
 
-        private Brush get_color(string hex)
-        {
-            BrushConverter brushConverter = new BrushConverter();
-            Brush brush = (Brush)brushConverter.ConvertFrom(hex);
-
-            return brush;
-        }
-
 
         private string primary;
         private string secundary;
@@ -34,7 +26,7 @@ namespace PasswordManager.View.UserControls
             set
             {
                 primary = value;
-                button_obj.Background = get_color(primary);
+                button_obj.Background = Functions.get_color(primary);
             }
         }
         public string Secundary
@@ -66,13 +58,13 @@ namespace PasswordManager.View.UserControls
 
         private void Border_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            button_obj.Background = get_color(secundary);
+            button_obj.Background = Functions.get_color(secundary);
             Mouse.OverrideCursor = Cursors.Hand;
         }
 
         private void Border_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            button_obj.Background = get_color(primary);
+            button_obj.Background = Functions.get_color(primary);
             Mouse.OverrideCursor = Cursors.Arrow;
         }
     }

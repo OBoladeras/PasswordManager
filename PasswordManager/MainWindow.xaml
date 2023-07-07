@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PasswordManager"
         xmlns:userControls="clr-namespace:PasswordManager.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="540" Width="910"
+        Title="Password Manager" Height="540" Width="910"
         Icon="Images/key_icon.png"
         MinHeight="540"
         MaxHeight="540"

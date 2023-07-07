@@ -30,8 +30,12 @@ namespace PasswordManager
             }
             else if (pageName == "main")
             {
-                // MainControl loginControl = new MainControl();
-                // contentControl.Content = loginControl;
+                MainPage mainPage = new MainPage();
+                contentControl.Content = mainPage;
+            }
+            else
+            {
+                Console.WriteLine("Page not found");
             }
         }
 
@@ -39,7 +43,6 @@ namespace PasswordManager
         public void LoginUserControl_LoginButtonClicked(object sender, EventArgs e)
         {
             load_page("main");
-
         }
     }
 }

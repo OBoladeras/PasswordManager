@@ -13,14 +13,6 @@ namespace PasswordManager.View.UserControls
             InitializeComponent();
         }
 
-        private Brush get_color(string hex)
-        {
-            BrushConverter brushConverter = new BrushConverter();
-            Brush brush = (Brush)brushConverter.ConvertFrom(hex);
-
-            return brush;
-        }
-
         private string colorShowed;
         private string text;
 
@@ -30,8 +22,8 @@ namespace PasswordManager.View.UserControls
             set
             {
                 colorShowed = value;
-                circle.Fill = get_color(colorShowed);
-                txtBox.Foreground = get_color(colorShowed);
+                circle.Fill = Functions.get_color(colorShowed);
+                txtBox.Foreground = Functions.get_color(colorShowed);
             }
         }
         public string Text

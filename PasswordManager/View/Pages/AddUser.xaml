@@ -9,7 +9,7 @@
 d:DesignHeight="505" d:DesignWidth="910">
 
     <UserControl.Resources>
-        <FontFamily x:Key="CaprasimoFont">/FinalTry;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>
+        <FontFamily x:Key="CaprasimoFont">/PasswordManager;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>
     </UserControl.Resources>
 
     <Grid Background="Black">
@@ -73,7 +73,7 @@ d:DesignHeight="505" d:DesignWidth="910">
                                     Text="Create"
                                     VerticalAlignment="Center" Padding="5"
                                     Primary="#6699ff" Secundary="#b3ccff" Width="303" Height="50"
-                                    MouseLeftButtonDown="CustomButton_MouseLeftButtonDown"/>
+                                    MouseLeftButtonDown="CreateUser_Click"/>
 
             <userControls:CustomButton Grid.Column="1" Grid.Row="6"
                                        Text="I have an account" x:Name="backButton"

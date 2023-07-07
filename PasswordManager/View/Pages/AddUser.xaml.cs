@@ -61,10 +61,69 @@ namespace PasswordManager.View.Pages
 
         }
 
-        private void CustomButton_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
 
+        private void CreateUser_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            bool securePassword = true;
+            string username = Username.textBox.Text;
+            string password1 = lblpassword.passwordBox.Password;
+            string password2 = PasswordConfirm.passwordBox.Password;
+
+            if (username == "")
+            {
+                MessageBox.Show("Write a username", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (password1 == "" || password2 == "")
+            {
+                MessageBox.Show("Dont leave blank password", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (password1 != password2)
+            {
+                MessageBox.Show("Passwords don't match", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                if (!Regex.IsMatch(password1, @"[A-Z]"))
+                {
+                    securePassword = false;
+                }
+                if (!Regex.IsMatch(password1, @"[a-z]"))
+                {
+                    securePassword = false;
+                }
+                if (!Regex.IsMatch(password1, @"\d"))
+                {
+                    securePassword = false;
+                }
+                if (!Regex.IsMatch(password1, @"[\W_]"))
+                {
+                    securePassword = false;
+                }
+
+                if (!securePassword)
+                {
+                    MessageBox.Show("Check password security", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    string[] args = new string[] { username, password1};
+
+                    string output = Functions.python_execution("check_username", args);
+                    
+                    if (output.Contains("valid"))
+                    {
+                        Functions.python_execution("add_user", args);
+                        var mainWindow = Window.GetWindow(this) as MainWindow;
+                        mainWindow?.load_page("login");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username already registered", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
         }
+
 
         private void backButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
