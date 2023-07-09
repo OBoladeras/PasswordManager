@@ -48,28 +48,10 @@ namespace PasswordManager
 
         public static Brush get_color(string hex)
         {
-
-            if (hex == "white")
-            {
-                hex = "#ffffff";
-            }
-            else if (hex == "gray")
-            {
-                hex = "#808080";
-            }
-            else if (hex == "black")
-            {
-                hex = "#000000";
-            }
-
-
             BrushConverter brushConverter = new BrushConverter();
             Brush brush = (Brush)brushConverter.ConvertFrom(hex);
 
             return brush;
         }
-
-
-
     }
 }

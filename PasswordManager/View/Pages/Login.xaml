@@ -49,11 +49,11 @@
             <userControls:PasswordInputBox x:Name="Password" Grid.Row="1" Grid.Column="2"
                                         Padding="5" PlaceHolder="Password" KeyDown="Password_KeyDown"/>
 
-            <userControls:CustomButton Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+            <userControls:CustomButton  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                                         Text="Enter" x:Name="enterButton"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" Padding="5"
-                                        Primary="#6699ff" Secundary="#b3ccff" Width="303" Height="50"
+                                        Width="303" Height="50"
                                         MouseLeftButtonDown="enterButton_click"/>
 
             <userControls:CustomButton Grid.Column="1" Grid.Row="4"

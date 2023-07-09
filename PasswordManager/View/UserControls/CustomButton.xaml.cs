@@ -3,21 +3,20 @@ using System.Windows.Input;
 
 namespace PasswordManager.View.UserControls
 {
-    /// <summary>
-    /// Interaction logic for CustomButton.xaml
-    /// </summary>
     public partial class CustomButton : UserControl
     {
         public CustomButton()
         {
             InitializeComponent();
+
+            load_settings();
         }
 
 
-        private string primary;
-        private string secundary;
         private string text;
         private int textsize;
+        private string primary;
+        private string secundary;
 
         public string Primary
         {
@@ -55,16 +54,42 @@ namespace PasswordManager.View.UserControls
             }
         }
 
-        private void Border_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            button_obj.Background = Functions.get_color(secundary);
+            if (secundary == null || secundary == "")
+            {
+                button_obj.Background = Functions.SecundaryColor;
+            }
+            else
+            {
+                button_obj.Background = Functions.get_color(secundary);
+            }
             Mouse.OverrideCursor = Cursors.Hand;
         }
 
-        private void Border_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            button_obj.Background = Functions.get_color(primary);
+            if (primary == null || primary == "")
+            {
+                button_obj.Background = Functions.PrimaryColor;
+            }
+            else
+            {
+                button_obj.Background = Functions.get_color(primary);
+            }
             Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void load_settings()
+        {
+            if (primary == null || primary == "")
+            {
+                button_obj.Background = Functions.PrimaryColor;
+            }
+            else
+            {
+                button_obj.Background = Functions.get_color(primary);
+            }
         }
     }
 }

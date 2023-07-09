@@ -48,8 +48,8 @@ namespace PasswordManager
         private void load_settings()
         {
             // Handle this
-            Functions.PrimaryColor = Functions.get_color("red");
-            Functions.SecundaryColor = Functions.get_color("blue");
+            Functions.PrimaryColor = Functions.get_color("#6699ff");
+            Functions.SecundaryColor = Functions.get_color("#b3ccff");
             Functions.TextColor = Functions.get_color("white");
         }
     }

@@ -75,7 +75,7 @@
                                     HorizontalAlignment="Center"
                                     Text="Create"
                                     VerticalAlignment="Center" Padding="5"
-                                    Primary="#6699ff" Secundary="#b3ccff" Width="303" Height="50"
+                                    Width="303" Height="50"
                                     MouseLeftButtonDown="CreateUser_Click"/>
 
             <userControls:CustomButton Grid.Column="1" Grid.Row="6"
