@@ -136,17 +136,27 @@ namespace PasswordManager.View.Pages
 
         private void Username_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            lblpassword.Focus();
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                lblpassword.Focus();
+            }
         }
 
         private void lblpassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            PasswordConfirm.Focus();
+            if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                PasswordConfirm.Focus();
+            }
         }
 
         private void PasswordConfirm_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            CreateUser();
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                CreateUser();
+
+            }
         }
     }
 }

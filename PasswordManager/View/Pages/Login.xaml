@@ -44,10 +44,10 @@
                         VerticalAlignment="Center" FontFamily="{StaticResource CaprasimoFont}"/>
 
             <userControls:InputBox x:Name="Username" Grid.Row="1" Grid.Column="1"
-                                PlaceHolderText="username" Padding="5" KeyDown="Username_KeyDown"/>
+                                PlaceHolderText="Username" Padding="5" KeyDown="Username_KeyDown"/>
             
             <userControls:PasswordInputBox x:Name="Password" Grid.Row="1" Grid.Column="2"
-                                        Padding="5" PlaceHolder="password" KeyDown="Password_KeyDown"/>
+                                        Padding="5" PlaceHolder="Password" KeyDown="Password_KeyDown"/>
 
             <userControls:CustomButton Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                                         Text="Enter" x:Name="enterButton"

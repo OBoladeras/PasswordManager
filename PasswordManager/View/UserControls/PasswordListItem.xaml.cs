@@ -1,10 +1,16 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PasswordManager.View.UserControls
 {
     public partial class PasswordListItem : UserControl
     {
+
+        public event EventHandler EditButtonClicked;
+        public event EventHandler RemoveButtonClicked;
 
         private int index;
         private string webpagetxt;
@@ -76,6 +82,60 @@ namespace PasswordManager.View.UserControls
             {
                 panel.Background = Functions.get_color("#d5d5d5");
             }
+        }
+
+        private void webpagelbl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            webpagelbl.Foreground = Functions.get_color("blue");
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void webpagelbl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            webpagelbl.Foreground = Functions.get_color("black");
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void webpagelbl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Process.Start($"http://{webpagetxt}");
+            }
+            catch
+            {
+                MessageBox.Show("Error opening the webpage", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void editButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void removeButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void removeButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void editButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void editButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            EditButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void removeButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            RemoveButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

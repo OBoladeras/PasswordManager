@@ -56,18 +56,18 @@
             <userControls:InputBox x:Name="Username" Margin="5"
                                    Grid.Row="1" Grid.Column="1"
                                    Grid.ColumnSpan="2"
-                                   PlaceHolderText="username"
+                                   PlaceHolderText="Username"
                                    KeyDown="Username_KeyDown"/>
 
             <userControls:PasswordInputBox x:Name="lblpassword"
                                            Grid.Row="3" Grid.Column="1"
-                                           Margin="5" PlaceHolder="password"
+                                           Margin="5" PlaceHolder="Password"
                                            PasswordBox.PasswordChanged="passwordlbl_text_changed"
                                            KeyDown="lblpassword_KeyDown"/>
 
             <userControls:PasswordInputBox x:Name="PasswordConfirm"
                                            Grid.Row="3" Grid.Column="2"
-                                           Margin="5" PlaceHolder="repit password"
+                                           Margin="5" PlaceHolder="Password"
                                            KeyDown="PasswordConfirm_KeyDown"/>
 
 
