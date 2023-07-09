@@ -9,6 +9,10 @@ namespace PasswordManager
         // Cache variables
         public static string Username { get; set; }
 
+        public static Brush PrimaryColor { get; set; }
+        public static Brush SecundaryColor { get; set; }
+        public static Brush TextColor { get; set; }
+
 
         public static string python_execution(string script, string[] variables)
         {

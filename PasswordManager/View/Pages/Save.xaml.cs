@@ -9,25 +9,7 @@ namespace PasswordManager.View.Pages
         public Save()
         {
             InitializeComponent();
-
-            username.Text = Functions.Username;
         }
-
-        // Menu Items Handle
-        private void dashboard_click(object sender, MouseButtonEventArgs e)
-        {
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.load_page("dashboard");
-        }
-
-        private void exitbutton_click(object sender, MouseButtonEventArgs e)
-        {
-            Functions.Username = "";
-
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.load_page("login");
-        }
-
 
         // Page Handle
         private void randomPasswordButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -58,7 +40,7 @@ namespace PasswordManager.View.Pages
         {
             if (e.Key == Key.Enter)
             {
-                username.Focus();
+                usernameLbl.Focus();
             }
         }
 

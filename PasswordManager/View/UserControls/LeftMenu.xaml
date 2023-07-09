@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="PasswordManager.View.UserControls.LeftMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PasswordManager.View.UserControls"
+             xmlns:userControls="clr-namespace:PasswordManager.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="505" d:DesignWidth="227.5">
+
+    <UserControl.Resources>
+        <FontFamily x:Key="CaprasimoFont">/PasswordManager;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>
+    </UserControl.Resources>
+
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="username"
+                       Text="Text" FontSize="50" Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" FontFamily="{StaticResource CaprasimoFont}"/>
+
+        <Rectangle x:Name="divider" Grid.Row="1" Fill="White" Margin="20, 0, 20, 0"/>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0, 20, 0, 0">
+            <userControls:MenuItem x:Name="dashboardbtn" VerticalAlignment="Top" HighLight="0"
+                                   Text="Dashboard" Padding="10" IconImage="home"
+                                   MouseLeftButtonDown="dashboardButton_click"/>
+            <userControls:MenuItem x:Name="savebtn" VerticalAlignment="Top" HighLight="0"
+                                   Text="Save" Padding="10" IconImage="save"
+                                       MouseLeftButtonDown="saveButton_click" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0, 0, 0, 20" VerticalAlignment="Bottom">
+            <userControls:MenuItem x:Name="settingsbtn" HighLight="0" Text="Settings"
+                                   Padding="10" IconImage="settings"
+                                   MouseLeftButtonDown="settingsButton_click"/>
+            <userControls:MenuItem x:Name="exitButton" HighLight="0" Text="Exit"
+                           Padding="10"
+                           IconImage="exit" MouseLeftButtonDown="exitbutton_click" />
+        </StackPanel>
+    </Grid>
+
+</UserControl>

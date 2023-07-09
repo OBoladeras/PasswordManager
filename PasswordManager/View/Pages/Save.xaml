@@ -18,39 +18,7 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Menu -->
-        <Grid Background="#3498DB">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="8*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock x:Name="username"
-                       Text="Text" FontSize="50" Foreground="White"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" FontFamily="{StaticResource CaprasimoFont}"/>
-
-            <Rectangle Grid.Row="1" Fill="White" Margin="20, 0, 20, 0"/>
-
-            <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0, 20, 0, 0"
-                        MouseLeftButtonDown="dashboard_click">
-                <userControls:MenuItem VerticalAlignment="Top" HighLight="0"
-                                   Text="Dashboard" Padding="10" IconImage="home"/>
-                <userControls:MenuItem VerticalAlignment="Top" HighLight="1"
-                                   Text="Save" Padding="10" IconImage="save"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0, 0, 0, 20" VerticalAlignment="Bottom">
-                <userControls:MenuItem HighLight="0" Text="Settings"
-                           Padding="0, 0, 0, 10"
-                           IconImage="settings"/>
-                <userControls:MenuItem HighLight="0" Text="Exit"
-                           Padding="0, 0, 0, 10"
-                           IconImage="exit" MouseLeftButtonDown="exitbutton_click"/>
-            </StackPanel>
-        </Grid>
+        <userControls:LeftMenu />
 
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>

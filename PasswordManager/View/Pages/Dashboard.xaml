@@ -8,51 +8,13 @@
              mc:Ignorable="d" 
               d:DesignHeight="505" d:DesignWidth="910">
 
-    <UserControl.Resources>
-        <FontFamily x:Key="CaprasimoFont">/PasswordManager;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>
-    </UserControl.Resources>
-
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Menu -->
-        <Grid Background="#3498DB" x:Name="leftMenu">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="8*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="10*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock x:Name="username"
-                       Text="Text" FontSize="50" Foreground="White"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" FontFamily="{StaticResource CaprasimoFont}"/>
-
-            <Rectangle Grid.Row="1" Fill="White" Margin="20, 0, 20, 0"/>
-
-            <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0, 20, 0, 0"
-                        >
-                <userControls:MenuItem VerticalAlignment="Top" HighLight="1"
-                                   Text="Dashboard" Padding="10" IconImage="home"/>
-                <userControls:MenuItem VerticalAlignment="Top" HighLight="0"
-                                   Text="Save" Padding="10" IconImage="save"
-                                       MouseLeftButtonDown="saveButton_click" />
-            </StackPanel>
-
-            <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0, 0, 0, 20" VerticalAlignment="Bottom">
-                <userControls:MenuItem HighLight="0" Text="Settings"
-                           Padding="0, 0, 0, 10"
-                           IconImage="settings"/>
-                <userControls:MenuItem HighLight="0" Text="Exit"
-                           Padding="0, 0, 0, 10"
-                           IconImage="exit" MouseLeftButtonDown="exitbutton_click"/>
-            </StackPanel>
-        </Grid>
-
+        <userControls:LeftMenu x:Name="leftMenu" />
 
         <!-- Right Part -->
         <Grid Grid.Column="1" Background="White" x:Name="rightPart">
@@ -142,7 +104,7 @@
                 <userControls:PasswordInputBox Grid.Row="3" Margin="20, 10"
                     PlaceHolder="Password"/>
                 <userControls:CustomButton Grid.Row="4" Margin="20, 10"
-                    Primary="Blue" Secundary="LightBlue"/>
+                    Primary="Blue" Secundary="LightBlue" Text="Update"/>
 
             </Grid>
         </Border>

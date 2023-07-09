@@ -19,24 +19,8 @@ namespace PasswordManager.View.Pages
         {
             InitializeComponent();
 
-            username.Text = Functions.Username;
             UpdateDisplayedItems();
         }
-
-        // Menu Items Handle
-        private void exitbutton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Functions.Username = "";
-
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.load_page("login");
-        }
-        private void saveButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.load_page("save");
-        }
-
 
         // List Items Handle
         private void DeleteChildItems()

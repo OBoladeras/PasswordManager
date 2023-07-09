@@ -11,6 +11,8 @@ namespace PasswordManager
         {
             InitializeComponent();
 
+            load_settings();
+
             load_page("login");
         }
 
@@ -43,10 +45,12 @@ namespace PasswordManager
             }
         }
 
-
-        public void LoginUserControl_LoginButtonClicked(object sender, EventArgs e)
+        private void load_settings()
         {
-            load_page("main");
+            // Handle this
+            Functions.PrimaryColor = Functions.get_color("red");
+            Functions.SecundaryColor = Functions.get_color("blue");
+            Functions.TextColor = Functions.get_color("white");
         }
     }
 }
