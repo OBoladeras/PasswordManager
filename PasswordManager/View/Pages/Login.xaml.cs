@@ -24,8 +24,10 @@ namespace PasswordManager.View.Pages
 
             if (result.Contains("valid"))
             {
+                Functions.Username = username;
+
                 var mainWindow = Window.GetWindow(this) as MainWindow;
-                mainWindow?.load_page("main");
+                mainWindow?.load_page("dashboard");
             }
             else if (result.Contains("error1"))
             {

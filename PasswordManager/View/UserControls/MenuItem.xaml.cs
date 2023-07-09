@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace PasswordManager.View.UserControls
 {
-    /// <summary>
-    /// Interaction logic for MenuItem.xaml
-    /// </summary>
     public partial class MenuItem : UserControl
     {
         public MenuItem()
@@ -27,10 +26,7 @@ namespace PasswordManager.View.UserControls
                 if (highlight == 1)
                 {
                     txtBlock.Foreground = Functions.get_color("white");
-                }
-                else
-                {
-                    txtBlock.Foreground = Functions.get_color("gray");
+                    txtBlock.FontWeight = FontWeights.Bold;
                 }
             }
         }
@@ -49,18 +45,23 @@ namespace PasswordManager.View.UserControls
             set
             {
                 iconImage = value;
-                imgIcon.Source = new BitmapImage(new Uri($"../../Image/{iconImage}", UriKind.Relative));
+                imgIcon.Source = new BitmapImage(new Uri($"../../Images/{iconImage}.png", UriKind.Relative));
             }
         }
 
-        private void Grid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
-            txtBlock.Foreground = Functions.get_color("white");
+            Mouse.OverrideCursor = Cursors.Hand;
+            txtBlock.FontWeight = FontWeights.Bold;
         }
 
-        private void Grid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
         {
-            txtBlock.Foreground = Functions.get_color("gray");
+            if (highlight != 1)
+            {
+                Mouse.OverrideCursor = Cursors.Arrow;
+                txtBlock.FontWeight = FontWeights.Normal;
+            }
         }
     }
 }

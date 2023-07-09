@@ -4,9 +4,6 @@ using System.Windows.Controls;
 
 namespace PasswordManager.View.Pages
 {
-    /// <summary>
-    /// Interaction logic for AddUser.xaml
-    /// </summary>
     public partial class AddUser : UserControl
     {
         public AddUser()
@@ -18,7 +15,7 @@ namespace PasswordManager.View.Pages
             lblsymbol.Color = "#000000";
         }
 
-        private void Password_PasswordChanged(object sender, RoutedEventArgs e)
+        private void passwordlbl_text_changed(object sender, RoutedEventArgs e)
         {
 
             string red = "#ff0000";
@@ -62,7 +59,7 @@ namespace PasswordManager.View.Pages
         }
 
 
-        private void CreateUser_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CreateUser()
         {
             bool securePassword = true;
             string username = Username.textBox.Text;
@@ -106,10 +103,10 @@ namespace PasswordManager.View.Pages
                 }
                 else
                 {
-                    string[] args = new string[] { username, password1};
+                    string[] args = new string[] { username, password1 };
 
                     string output = Functions.python_execution("check_username", args);
-                    
+
                     if (output.Contains("valid"))
                     {
                         Functions.python_execution("add_user", args);
@@ -125,10 +122,31 @@ namespace PasswordManager.View.Pages
         }
 
 
+        private void CreateUser_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            CreateUser();
+        }
+
+
         private void backButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var mainWindow = Window.GetWindow(this) as MainWindow;
             mainWindow?.load_page("login");
+        }
+
+        private void Username_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            lblpassword.Focus();
+        }
+
+        private void lblpassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            PasswordConfirm.Focus();
+        }
+
+        private void PasswordConfirm_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            CreateUser();
         }
     }
 }

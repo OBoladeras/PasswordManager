@@ -8,10 +8,8 @@
         mc:Ignorable="d"
         Title="Password Manager" Height="540" Width="910"
         Icon="Images/key_icon.png"
-        MinHeight="540"
-        MaxHeight="540"
-        MinWidth="910"
-        MaxWidth="910">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
     
     <Grid>
         <ContentControl x:Name="contentControl" />

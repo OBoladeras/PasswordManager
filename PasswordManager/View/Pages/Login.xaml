@@ -39,9 +39,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="1" Grid.ColumnSpan="2"
-                       Text="WELCOME" Foreground="White"
-                       FontSize="56" HorizontalAlignment="Center"
-                       VerticalAlignment="Center" FontFamily="{StaticResource CaprasimoFont}"/>
+                        Text="WELCOME" Foreground="White"
+                        FontSize="56" HorizontalAlignment="Center"
+                        VerticalAlignment="Center" FontFamily="{StaticResource CaprasimoFont}"/>
 
             <userControls:InputBox x:Name="Username" Grid.Row="1" Grid.Column="1"
                                 PlaceHolderText="username" Padding="5" KeyDown="Username_KeyDown"/>
@@ -50,19 +50,19 @@
                                         Padding="5" PlaceHolder="password" KeyDown="Password_KeyDown"/>
 
             <userControls:CustomButton Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                                       Text="Enter" x:Name="enterButton"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center" Padding="5"
-                                       Primary="#6699ff" Secundary="#b3ccff" Width="303" Height="50"
-                                       MouseLeftButtonDown="enterButton_click"/>
+                                        Text="Enter" x:Name="enterButton"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" Padding="5"
+                                        Primary="#6699ff" Secundary="#b3ccff" Width="303" Height="50"
+                                        MouseLeftButtonDown="enterButton_click"/>
 
             <userControls:CustomButton Grid.Column="1" Grid.Row="4"
-                                       Text="Create Account" x:Name="createAccountButton"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Top"
-                                       Margin="5, 0, 0, 0" TextSize="17"
-                                       Primary="#000000" Secundary="#000000"
-                                       MouseLeftButtonDown="createAccountButton_click"/>
+                                        Text="Create Account" x:Name="createAccountButton"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="5, 0, 0, 0" TextSize="17"
+                                        Primary="#000000" Secundary="#000000"
+                                        MouseLeftButtonDown="createAccountButton_click"/>
         </Grid>
     </Grid>
 </UserControl>

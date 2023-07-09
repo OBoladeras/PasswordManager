@@ -1,14 +1,12 @@
-﻿using System;
+﻿using PasswordManager.View.Pages;
+using System;
 using System.Windows;
-using PasswordManager.View.Pages;
 
 namespace PasswordManager
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,13 +26,19 @@ namespace PasswordManager
                 AddUser addUSerControl = new AddUser();
                 contentControl.Content = addUSerControl;
             }
-            else if (pageName == "main")
+            else if (pageName == "main" || pageName == "dashboard")
             {
-                MainPage mainPage = new MainPage();
+                Dashboard mainPage = new Dashboard();
                 contentControl.Content = mainPage;
             }
-            else
+            else if (pageName == "save")
             {
+                Save mainPage = new Save();
+                contentControl.Content = mainPage;
+
+            }
+            else
+                    {
                 Console.WriteLine("Page not found");
             }
         }

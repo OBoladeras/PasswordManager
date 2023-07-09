@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PasswordManager.View.Pages"
              xmlns:userControls="clr-namespace:PasswordManager.View.UserControls"
              mc:Ignorable="d" 
-d:DesignHeight="505" d:DesignWidth="910">
+             d:DesignHeight="505" d:DesignWidth="910">
 
     <UserControl.Resources>
         <FontFamily x:Key="CaprasimoFont">/PasswordManager;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>
@@ -56,16 +56,19 @@ d:DesignHeight="505" d:DesignWidth="910">
             <userControls:InputBox x:Name="Username" Margin="5"
                                    Grid.Row="1" Grid.Column="1"
                                    Grid.ColumnSpan="2"
-                                   PlaceHolderText="username"/>
+                                   PlaceHolderText="username"
+                                   KeyDown="Username_KeyDown"/>
 
             <userControls:PasswordInputBox x:Name="lblpassword"
                                            Grid.Row="3" Grid.Column="1"
                                            Margin="5" PlaceHolder="password"
-                                           PasswordBox.PasswordChanged="Password_PasswordChanged"/>
+                                           PasswordBox.PasswordChanged="passwordlbl_text_changed"
+                                           KeyDown="lblpassword_KeyDown"/>
 
             <userControls:PasswordInputBox x:Name="PasswordConfirm"
                                            Grid.Row="3" Grid.Column="2"
-                                           Margin="5" PlaceHolder="repit password"/>
+                                           Margin="5" PlaceHolder="repit password"
+                                           KeyDown="PasswordConfirm_KeyDown"/>
 
 
             <userControls:CustomButton Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"

@@ -7,16 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="227.5">
 
+    <UserControl.Resources>
+        <FontFamily x:Key="NotoSerifMakasarFont">/PasswordManager;component/Fonts/NotoSerifMakasar.ttf#NotoSerifMakasar</FontFamily>
+        <FontFamily x:Key="CaprasimoFont">/PasswordManager;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>  
+    </UserControl.Resources>
+
     <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="../../Images/key_icon.png" x:Name="imgIcon" Height="35"/>
+        <Image Source="../../Images/key_icon.png" x:Name="imgIcon" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                   Text="Site" FontSize="25" FontFamily="Light" Foreground="White"
-                   x:Name="txtBlock"/>
+                   Text="Site" FontSize="15" FontFamily="Quicksand Light" Foreground="White"
+                   x:Name="txtBlock" FontWeight="Normal"/>
 
     </Grid>
 </UserControl>

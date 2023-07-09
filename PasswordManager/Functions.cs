@@ -6,12 +6,16 @@ namespace PasswordManager
 {
     internal class Functions
     {
+        // Cache variables
+        public static string Username { get; set; }
+
+
         public static string python_execution(string script, string[] variables)
         {
             Process process = new Process();
 
             process.StartInfo.FileName = "python";
-            
+
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             process.StartInfo.Arguments = $"PythonFiles/{script}.py";
             process.StartInfo.Arguments = $"{basePath}/../../PythonFiles/{script}.py";
@@ -27,7 +31,7 @@ namespace PasswordManager
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
 
-            Console.WriteLine("Python exit");
+            Console.WriteLine("Python output:");
             Console.WriteLine(output);
             return output;
         }
@@ -60,6 +64,8 @@ namespace PasswordManager
 
             return brush;
         }
+
+
 
     }
 }
