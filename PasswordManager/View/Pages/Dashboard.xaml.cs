@@ -14,6 +14,7 @@ namespace PasswordManager.View.Pages
     {
 
         private int currentPage = 1;
+        private int itemIndex = 0;
         private static string filePath = $"../../Data/{Functions.Username}_data.txt";
 
         public Dashboard()
@@ -122,7 +123,7 @@ namespace PasswordManager.View.Pages
         {
             if (sender is PasswordListItem clickedItem)
             {
-                int itemIndex = clickedItem.Index;
+                itemIndex = clickedItem.Index;
 
                 BlurEffect blurEffect = new BlurEffect();
                 blurEffect.Radius = 8;
@@ -132,6 +133,8 @@ namespace PasswordManager.View.Pages
 
                 editMenu.Visibility = Visibility.Visible;
 
+                webpageEditBox.textBox.Text = clickedItem.WebpageTxt;
+                usernameEditBox.textBox.Text = clickedItem.GmailTxt;
             }
         }
 
@@ -180,6 +183,24 @@ namespace PasswordManager.View.Pages
             editMenu.Visibility = Visibility.Hidden;
             leftMenu.Effect = null;
             rightPart.Effect = null;
+        }
+
+        private void updatePasswordBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult answer = MessageBox.Show("Sure you want to update the password?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            if (answer == MessageBoxResult.Yes)
+            {
+                DeleteItemAtIndex(itemIndex);
+
+                string username = Functions.Username;
+                string web = webpageEditBox.textBox.Text;
+                string email = usernameEditBox.textBox.Text;
+                string password = passwordEditBox.passwordBox.Password;
+
+                string[] variables = { username, web, email, password };
+                Functions.python_execution("save_password", variables);
+            }
         }
     }
 }
