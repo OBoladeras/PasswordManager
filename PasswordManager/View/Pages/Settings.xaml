@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="PasswordManager.View.Pages.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PasswordManager.View.Pages"
+             xmlns:userControls="clr-namespace:PasswordManager.View.UserControls"
+             mc:Ignorable="d" 
+              d:DesignHeight="505" d:DesignWidth="910">
+
+    <UserControl.Resources>
+        <FontFamily x:Key="CaprasimoFont">/PasswordManager;component/Fonts/Caprasimo.ttf#Caprasimo</FontFamily>
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <userControls:LeftMenu />
+
+        <Grid Grid.Column="1" Margin="10">
+
+            <StackPanel x:Name="interfaceThemePanel" Orientation="Vertical">
+                <TextBlock Text="Interface theme"
+                           FontSize="22" FontFamily="Dubai Medium"/>
+                <TextBlock Text="Customize your workspace theme"
+                           FontSize="15" />
+                
+                <!-- Precreated ones to select -->
+                <TextBlock Text="Precreated"
+                           FontSize="18" FontFamily="Dubai Medium"/>
+                <Grid Height="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <userControls:InterfaceChoice Selected="true" Index="1"/>
+                    <userControls:InterfaceChoice Grid.Column="1" Index="2"/>
+                    <userControls:InterfaceChoice Grid.Column="2" Index="3"/>
+
+                </Grid>
+
+                <!-- Custom -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Custom"
+                           FontSize="18" FontFamily="Dubai Medium"/>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Customize the look of the app chosing exactly the color you want"
+                               FontSize="15"/>
+
+                    <userControls:InputBox Grid.Column="1" Grid.RowSpan="2"
+                                               Padding="200, 5, 0, 5"/>
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

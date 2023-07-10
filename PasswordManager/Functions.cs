@@ -15,6 +15,12 @@ namespace PasswordManager
         public static Brush Complementary { get; set; }
 
 
+
+        // Custom color 1 = #6C63FF
+        // Custom color 2 = #00BFA6
+        // Custom color 3 = #F50057
+
+
         public static string python_execution(string script, string[] variables)
         {
             Process process = new Process();

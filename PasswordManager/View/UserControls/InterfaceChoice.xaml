@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="PasswordManager.View.UserControls.InterfaceChoice"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PasswordManager.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="220.83">
+
+    <Grid Margin="10" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Border BorderThickness="2" Background="White" CornerRadius="10" />
+        
+        <Image x:Name="backgroundImage" Source="../../Images/color1.png" Margin="-15, -25, -15, 0" />
+        <Border x:Name="bigBorder" BorderBrush="#6C63FF" BorderThickness="2" VerticalAlignment="Bottom" Height="42" CornerRadius="0, 0, 10, 10"/>
+
+        <TextBlock x:Name="colorName" Text="Purple" VerticalAlignment="Bottom" Margin="10, 0, 0, 5"
+                   FontSize="20" FontFamily="Dubai Medium"/>
+        <Border x:Name="smallBorder" BorderThickness="2" BorderBrush="#6C63FF" CornerRadius="10" />
+
+        <Border x:Name="checkBoxCircle" CornerRadius="20" BorderThickness="0" BorderBrush="#6C63FF" Width="30" Height="30" Margin="0, 0, 10, 6"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Transparent"/>
+
+    </Grid>
+</UserControl>

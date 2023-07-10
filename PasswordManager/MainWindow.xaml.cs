@@ -29,6 +29,7 @@ namespace PasswordManager
                 AddUser addUSerControl = new AddUser();
                 contentControl.Content = addUSerControl;
             }
+
             else if (pageName == "main" || pageName == "dashboard")
             {
                 Dashboard mainPage = new Dashboard();
@@ -38,10 +39,14 @@ namespace PasswordManager
             {
                 Save mainPage = new Save();
                 contentControl.Content = mainPage;
-
+            }
+            else if (pageName == "settings")
+            {
+                Settings mainPage = new Settings();
+                contentControl.Content = mainPage;
             }
             else
-                    {
+            {
                 Console.WriteLine("Page not found");
             }
         }
