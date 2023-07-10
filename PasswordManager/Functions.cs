@@ -12,6 +12,7 @@ namespace PasswordManager
         public static Brush PrimaryColor { get; set; }
         public static Brush SecundaryColor { get; set; }
         public static Brush TextColor { get; set; }
+        public static Brush Complementary { get; set; }
 
 
         public static string python_execution(string script, string[] variables)

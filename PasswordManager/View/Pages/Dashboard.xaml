@@ -54,8 +54,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <userControls:CustomButton Primary="#3498DB" Margin="5" Text=">"
-                                           Secundary="LightBlue"
+                <userControls:CustomButton Margin="5" Text=">"
                                            x:Name="leftArrowButton" MouseLeftButtonDown="leftArrowButton_MouseLeftButtonDown">
                     <userControls:CustomButton.RenderTransform>
                         <RotateTransform Angle="180" CenterX="0.5" CenterY="0.5"/>
@@ -66,8 +65,7 @@
                 </userControls:CustomButton>
 
 
-                <userControls:CustomButton Grid.Column="2" Primary="#3498DB"
-                                           Secundary="LightBlue"
+                <userControls:CustomButton Grid.Column="2"
                                            Text=">"  Margin="5" x:Name="rightArrowButton"
                                            MouseLeftButtonDown="rightArrowButton_MouseLeftButtonDown"/>
             </Grid>
@@ -77,7 +75,7 @@
 
         <!-- Edit Menu -->
         <Border x:Name="editMenu" Grid.ColumnSpan="2"
-                Background="Pink" CornerRadius="10"
+                CornerRadius="10"
                 Width="300" Height="400">
             <Grid>
                 <Grid.RowDefinitions>
@@ -104,7 +102,7 @@
                 <userControls:PasswordInputBox Grid.Row="3" Margin="20, 10"
                     PlaceHolder="Password"/>
                 <userControls:CustomButton Grid.Row="4" Margin="20, 10"
-                    Primary="Blue" Secundary="LightBlue" Text="Update"/>
+                                           Text="Update"/>
 
             </Grid>
         </Border>

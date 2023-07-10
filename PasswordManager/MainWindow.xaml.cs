@@ -1,5 +1,6 @@
 ﻿using PasswordManager.View.Pages;
 using System;
+using System.IO;
 using System.Windows;
 
 namespace PasswordManager
@@ -47,10 +48,35 @@ namespace PasswordManager
 
         private void load_settings()
         {
-            // Handle this
-            Functions.PrimaryColor = Functions.get_color("#6699ff");
-            Functions.SecundaryColor = Functions.get_color("#b3ccff");
-            Functions.TextColor = Functions.get_color("white");
+            // Default settings
+            string primary = "#6699ff";
+            string secundary = "#b3ccff";
+            string complementary = "#6699ff";
+            string textColor = "white";
+
+
+            // Get data
+            string filePath = "../../DataContext/settings.txt";
+            string[] lines = File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+            {
+                string[] items = line.Split(';');
+                if (items[0] == "colors" || items.Length == 5)
+                {
+                    primary = items[1];
+                    secundary = items[2];
+                    complementary = items[3];
+                    textColor = items[4];
+                }
+            }
+            
+
+            // Save data in cache
+            Functions.PrimaryColor = Functions.get_color(primary);
+            Functions.SecundaryColor = Functions.get_color(secundary);
+            Functions.Complementary = Functions.get_color(complementary);
+            Functions.TextColor = Functions.get_color(textColor);
         }
     }
 }

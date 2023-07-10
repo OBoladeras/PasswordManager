@@ -47,7 +47,6 @@
                                            PlaceHolder="Password"
                                            Margin="100, 15, 200, 15"/>
             <userControls:CustomButton x:Name="randomPasswordButton" Grid.Column="1" Grid.Row="3"
-                           Primary="#3498DB" Secundary="LightBlue"
                            HorizontalAlignment="Right"
                            Width="80" Margin="0, 15, 100, 15"
                            MouseLeftButtonDown="randomPasswordButton_MouseLeftButtonDown">
@@ -58,7 +57,6 @@
             
             <userControls:CustomButton x:Name="saveButton" Grid.ColumnSpan="2" Grid.Row="4"
                                        Margin="100, 15, 100, 15"
-                                       Primary="#3498DB" Secundary="LightBlue"
                                        Text="Save"
                                        MouseLeftButtonDown="saveButton_MouseLeftButtonDown"/>
 

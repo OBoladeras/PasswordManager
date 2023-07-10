@@ -19,8 +19,16 @@ namespace PasswordManager.View.Pages
         {
             InitializeComponent();
 
+            load_settings();
+
             UpdateDisplayedItems();
         }
+
+        private void load_settings()
+        {
+            editMenu.Background = Functions.Complementary;
+        }
+
 
         // List Items Handle
         private void DeleteChildItems()
