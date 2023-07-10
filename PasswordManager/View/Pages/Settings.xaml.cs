@@ -44,7 +44,80 @@ namespace PasswordManager.View.Pages
             reload();
         }
 
+        private void customColorBox_textChanged(object sender, EventArgs e)
+        {
+            string customColor = customColorBox.textBox.Text;
+            string clear = customColor.Substring(1);
+            bool isHexadecimal = int.TryParse(clear, System.Globalization.NumberStyles.HexNumber, null, out _);
 
+
+            if (customColor.Length == 7 && customColor.StartsWith("#") && isHexadecimal)
+            {
+                string[] colors = get_other_colors(customColor);
+                if (customColor == "#6C63FF")
+                {
+                    set_colors(colors, 1);
+                }
+                else if (customColor == "#00BFA6")
+                {
+                    set_colors(colors, 2);
+                }
+                else if (customColor == "#F50057")
+                {
+                    set_colors(colors, 3);
+                }
+                else
+                {
+                    set_colors(colors, 0);
+                }
+                Functions.CustomColor = customColor;
+
+                reload();
+            }
+        }
+
+
+
+        private string[] get_other_colors(string originalColor)
+        {
+            int red = Convert.ToInt32(originalColor.Substring(1, 2), 16);
+            int green = Convert.ToInt32(originalColor.Substring(3, 2), 16);
+            int blue = Convert.ToInt32(originalColor.Substring(5, 2), 16);
+
+            double reductionPercentage = 0.5;
+            red = (int)(red * reductionPercentage);
+            green = (int)(green * reductionPercentage);
+            blue = (int)(blue * reductionPercentage);
+
+            int complementaryRed = 255 - red;
+            int complementaryGreen = 255 - green;
+            int complementaryBlue = 255 - blue;
+
+            int softerRed = (int)((255 - red) * reductionPercentage) + red;
+            int softerGreen = (int)((255 - green) * reductionPercentage) + green;
+            int softerBlue = (int)((255 - blue) * reductionPercentage) + blue;
+
+            string softerColor = string.Format("#{0:X2}{1:X2}{2:X2}", softerRed, softerGreen, softerBlue);
+            string complementaryColor = string.Format("#{0:X2}{1:X2}{2:X2}", complementaryRed, complementaryGreen, complementaryBlue);
+
+
+            double brightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
+            double brightnessThreshold = 0.5;
+
+            string textColor;
+            if (brightness > brightnessThreshold)
+            {
+                textColor = "#000000";
+            }
+            else
+            {
+                textColor = "#FFFFFF";
+            }
+
+
+            string[] colors = { originalColor, softerColor, complementaryColor, textColor };
+            return colors;
+        }
 
         private void set_colors(string[] colors, int selectedColor)
         {
@@ -66,40 +139,11 @@ namespace PasswordManager.View.Pages
             File.WriteAllLines(filePath, lines);
         }
 
-        private string[] get_other_colors(string originalColor)
+
+        private void reload()
         {
-            int red = Convert.ToInt32(originalColor.Substring(1, 2), 16);
-            int green = Convert.ToInt32(originalColor.Substring(3, 2), 16);
-            int blue = Convert.ToInt32(originalColor.Substring(5, 2), 16);
-
-            double reductionPercentage = 0.5;
-            red = (int)(red * reductionPercentage);
-            green = (int)(green * reductionPercentage);
-            blue = (int)(blue * reductionPercentage);
-
-            int complementaryRed = 255 - red;
-            int complementaryGreen = 255 - green;
-            int complementaryBlue = 255 - blue;
-
-            string complementaryColor = string.Format("#{0:X2}{1:X2}{2:X2}", complementaryRed, complementaryGreen, complementaryBlue);
-            string softerColor = string.Format("#{0:X2}{1:X2}{2:X2}", red, green, blue);
-
-            double brightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
-            double brightnessThreshold = 0.5;
-
-            string textColor;
-            if (brightness > brightnessThreshold)
-            {
-                textColor = "#000000";
-            }
-            else
-            {
-                textColor = "#FFFFFF";
-            }
-
-
-            string[] colors = { originalColor, softerColor, complementaryColor, textColor };
-            return colors;
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.load_page("settings");
         }
 
         private void load_settings()
@@ -109,28 +153,28 @@ namespace PasswordManager.View.Pages
                 purpleBox.Selected = true;
                 greenBox.Selected = false;
                 magentaBox.Selected = false;
+
+                customColorBox.textBox.Text = "#6C63FF";
             }
             else if (Functions.ColorSelectedIndex == 2)
             {
                 purpleBox.Selected = false;
                 greenBox.Selected = true;
                 magentaBox.Selected = false;
+
+                customColorBox.textBox.Text = "#00BFA6";
             }
             else if (Functions.ColorSelectedIndex == 3)
             {
-
-                Console.WriteLine("asdddddddddd");
-
                 purpleBox.Selected = false;
                 greenBox.Selected = false;
                 magentaBox.Selected = true;
+
+                customColorBox.textBox.Text = "#F50057";
             }
+
+            customColorBox.textBox.Text = Functions.CustomColor;
         }
 
-        private void reload()
-        {
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.load_page("settings");
-        }
     }
 }

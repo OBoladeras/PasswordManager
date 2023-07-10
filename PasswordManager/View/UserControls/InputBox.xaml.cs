@@ -1,10 +1,14 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PasswordManager.View.UserControls
 {
     public partial class InputBox : UserControl
     {
+
+        public event EventHandler textChanged;
+
         public InputBox()
         {
             InitializeComponent();
@@ -35,6 +39,8 @@ namespace PasswordManager.View.UserControls
             {
                 placeHolder.Visibility = System.Windows.Visibility.Hidden;
             }
+
+            textChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void textBox_IsKeyboardFocusedChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)

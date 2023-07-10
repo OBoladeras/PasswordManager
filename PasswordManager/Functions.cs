@@ -14,6 +14,8 @@ namespace PasswordManager
         public static Brush Complementary { get; set; }
         public static Brush TextColor { get; set; }
 
+        public static string CustomColor { get; set; }
+
         public static int ColorSelectedIndex { get; set; }
 
 

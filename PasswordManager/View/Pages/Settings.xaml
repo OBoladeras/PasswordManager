@@ -63,8 +63,9 @@
                     <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Customize the look of the app chosing exactly the color you want"
                                FontSize="15"/>
 
-                    <userControls:InputBox Grid.Column="1" Grid.RowSpan="2"
-                                               Padding="200, 5, 0, 5"/>
+                    <userControls:InputBox x:Name="customColorBox" Grid.Column="1" Grid.RowSpan="2"
+                                               Padding="200, 5, 0, 5"
+                                           textChanged="customColorBox_textChanged"/>
                 </Grid>
             </StackPanel>
 

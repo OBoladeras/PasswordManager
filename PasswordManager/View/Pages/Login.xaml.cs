@@ -14,7 +14,6 @@ namespace PasswordManager.View.Pages
         }
 
 
-
         private void enterButton_click(object sender, MouseButtonEventArgs e)
         {
             check_login();
@@ -41,7 +40,6 @@ namespace PasswordManager.View.Pages
             var mainWindow = Window.GetWindow(this) as MainWindow;
             mainWindow?.load_page("addUser");
         }
-
 
 
         private void check_login()
@@ -110,6 +108,19 @@ namespace PasswordManager.View.Pages
             Functions.SecundaryColor = Functions.get_color(secundary);
             Functions.Complementary = Functions.get_color(complementary);
             Functions.TextColor = Functions.get_color(textColor);
+
+            if (primary == "#6C63FF")
+            {
+                Functions.ColorSelectedIndex = 1;
+            }
+            else if (primary == "#00BFA6")
+            {
+                Functions.ColorSelectedIndex = 2;
+            }
+            else if (primary == "#F50057")
+            {
+                Functions.ColorSelectedIndex = 3;
+            }
         }
     }
 }
