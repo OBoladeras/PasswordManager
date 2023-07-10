@@ -11,14 +11,11 @@ namespace PasswordManager
 
         public static Brush PrimaryColor { get; set; }
         public static Brush SecundaryColor { get; set; }
-        public static Brush TextColor { get; set; }
         public static Brush Complementary { get; set; }
+        public static Brush TextColor { get; set; }
 
+        public static int ColorSelectedIndex { get; set; }
 
-
-        // Custom color 1 = #6C63FF
-        // Custom color 2 = #00BFA6
-        // Custom color 3 = #F50057
 
 
         public static string python_execution(string script, string[] variables)

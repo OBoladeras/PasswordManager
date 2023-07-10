@@ -30,7 +30,9 @@ namespace PasswordManager.View.UserControls
         {
             get { return selected; }
             set
-            { selected = value; }
+            { selected = value; 
+                set_color();
+            }
         }
 
         private void set_color()
@@ -86,11 +88,6 @@ namespace PasswordManager.View.UserControls
         private void Grid_MouseLeave(object sender, MouseEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Arrow;
-        }
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

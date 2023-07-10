@@ -31,16 +31,19 @@
                 <!-- Precreated ones to select -->
                 <TextBlock Text="Precreated"
                            FontSize="18" FontFamily="Dubai Medium"/>
-                <Grid Height="200">
+                <Grid Height="200" Margin="0, 0, 0, 10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <userControls:InterfaceChoice Selected="true" Index="1"/>
-                    <userControls:InterfaceChoice Grid.Column="1" Index="2"/>
-                    <userControls:InterfaceChoice Grid.Column="2" Index="3"/>
+                    <userControls:InterfaceChoice x:Name="purpleBox" Index="1"
+                                                  MouseLeftButtonDown="purpleBox_MouseLeftButtonDown"/>
+                    <userControls:InterfaceChoice x:Name="greenBox" Grid.Column="1" Index="2"
+                                                  MouseLeftButtonDown="greenBox_MouseLeftButtonDown"/>
+                    <userControls:InterfaceChoice x:Name="magentaBox" Grid.Column="2" Index="3"
+                                                  MouseLeftButtonDown="magentaBox_MouseLeftButtonDown"/>
 
                 </Grid>
 

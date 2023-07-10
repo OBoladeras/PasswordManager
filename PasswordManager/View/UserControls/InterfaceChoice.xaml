@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="220.83">
 
-    <Grid Margin="10" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+    <Grid Margin="10" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
         <Border BorderThickness="2" Background="White" CornerRadius="10" />
         
         <Image x:Name="backgroundImage" Source="../../Images/color1.png" Margin="-15, -25, -15, 0" />

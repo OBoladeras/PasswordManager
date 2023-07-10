@@ -54,6 +54,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" Padding="5"
                                         Width="303" Height="50"
+                                        Primary="#6699ff" Secundary="#b3ccff"
                                         MouseLeftButtonDown="enterButton_click"/>
 
             <userControls:CustomButton Grid.Column="1" Grid.Row="4"
