@@ -1,10 +1,8 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PasswordManager.View.UserControls
 {
-    /// <summary>
-    /// Interaction logic for PasswordInputBox.xaml
-    /// </summary>
     public partial class PasswordInputBox : UserControl
     {
         public PasswordInputBox()
@@ -52,6 +50,16 @@ namespace PasswordManager.View.UserControls
                     placeHolder.Visibility = System.Windows.Visibility.Visible;
                 }
             }
+        }
+
+        private void passwordBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.IBeam;
+        }
+
+        private void passwordBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
     }
 }
