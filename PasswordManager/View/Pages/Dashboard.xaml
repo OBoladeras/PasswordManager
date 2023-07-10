@@ -76,6 +76,7 @@
         <!-- Edit Menu -->
         <Border x:Name="editMenu" Grid.ColumnSpan="2"
                 CornerRadius="10"
+                Visibility="Hidden"
                 Width="300" Height="400">
             <Grid>
                 <Grid.RowDefinitions>
@@ -87,10 +88,14 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="10" Background="Red"
+                <Border x:Name="closePopUpButton"
+                        CornerRadius="10" Background="Red"
                         Width="20" Height="20" Margin="0, 15, 15, 0"
                         HorizontalAlignment="Right"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        MouseEnter="closePopUpButton_MouseEnter"
+                        MouseLeave="closePopUpButton_MouseLeave"
+                        MouseLeftButtonDown="closePopUpButton_Click">
                     <TextBlock Text="X" FontSize="10"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>

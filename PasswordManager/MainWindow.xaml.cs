@@ -56,21 +56,27 @@ namespace PasswordManager
 
 
             // Get data
-            string filePath = "../../DataContext/settings.txt";
-            string[] lines = File.ReadAllLines(filePath);
-
-            foreach (string line in lines)
+            try
             {
-                string[] items = line.Split(';');
-                if (items[0] == "colors" || items.Length == 5)
+                string filePath = $"../../Data/settings_{Functions.Username}.txt";
+                string[] lines = File.ReadAllLines(filePath);
+
+                foreach (string line in lines)
                 {
-                    primary = items[1];
-                    secundary = items[2];
-                    complementary = items[3];
-                    textColor = items[4];
+                    string[] items = line.Split(';');
+                    if (items[0] == "colors" || items.Length == 5)
+                    {
+                        primary = items[1];
+                        secundary = items[2];
+                        complementary = items[3];
+                        textColor = items[4];
+                    }
                 }
             }
-            
+            catch
+            {
+                Console.WriteLine("Settings file not found");
+            }            
 
             // Save data in cache
             Functions.PrimaryColor = Functions.get_color(primary);

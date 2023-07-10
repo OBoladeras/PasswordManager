@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Effects;
 
 
@@ -94,7 +95,7 @@ namespace PasswordManager.View.Pages
         }
 
 
-        private void leftArrowButton_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void leftArrowButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (currentPage > 1)
             {
@@ -103,7 +104,7 @@ namespace PasswordManager.View.Pages
             }
         }
 
-        private void rightArrowButton_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void rightArrowButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             currentPage = currentPage + 1;
             UpdateDisplayedItems();
@@ -160,6 +161,25 @@ namespace PasswordManager.View.Pages
 
                 File.WriteAllLines(filePath, linesList);
             }
+        }
+
+
+        // Pop Up window
+        private void closePopUpButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void closePopUpButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
+        }
+
+        private void closePopUpButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            editMenu.Visibility = Visibility.Hidden;
+            leftMenu.Effect = null;
+            rightPart.Effect = null;
         }
     }
 }
