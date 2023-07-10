@@ -10,6 +10,7 @@ namespace PasswordManager.View.Pages
     public partial class Settings : UserControl
     {
 
+        string[] colorsGlobal;
         string filePath = $"../../Data/settings_{Functions.Username}.txt";
 
         public Settings()
@@ -76,6 +77,21 @@ namespace PasswordManager.View.Pages
             }
         }
 
+        private void saveButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            string lineToAppend = $"colors;{colorsGlobal[0]};{colorsGlobal[1]};{colorsGlobal[2]};{colorsGlobal[3]}";
+
+            List<string> lines = File.ReadAllLines(filePath)
+                .Where(line => !line.Contains("colors"))
+                .ToList();
+
+            lines.Add(lineToAppend);
+
+            File.WriteAllLines(filePath, lines);
+
+            MessageBox.Show("Saved succesfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
 
 
         private string[] get_other_colors(string originalColor)
@@ -128,15 +144,7 @@ namespace PasswordManager.View.Pages
 
             Functions.ColorSelectedIndex = selectedColor;
 
-            string lineToAppend = $"colors;{colors[0]};{colors[1]};{colors[2]};{colors[3]}";
-
-            List<string> lines = File.ReadAllLines(filePath)
-                .Where(line => !line.Contains("color"))
-                .ToList();
-
-            lines.Add(lineToAppend);
-
-            File.WriteAllLines(filePath, lines);
+            colorsGlobal = colors;
         }
 
 

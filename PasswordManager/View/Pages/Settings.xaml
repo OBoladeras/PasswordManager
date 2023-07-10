@@ -23,11 +23,26 @@
         <Grid Grid.Column="1" Margin="10">
 
             <StackPanel x:Name="interfaceThemePanel" Orientation="Vertical">
-                <TextBlock Text="Interface theme"
-                           FontSize="22" FontFamily="Dubai Medium"/>
-                <TextBlock Text="Customize your workspace theme"
-                           FontSize="15" />
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="Interface theme"
+                               FontSize="22" FontFamily="Dubai Medium"/>
+                    <TextBlock Grid.Row="1" Text="Customize your workspace theme"
+                               FontSize="15" />
+
+                    <userControls:CustomButton x:Name="saveButton" Grid.RowSpan="2" Grid.Column="1"
+                                               Primary="Blue" HorizontalAlignment="Right"
+                                               Width="120" Text="Save" Padding="0, 3"
+                                               MouseLeftButtonDown="saveButton_click"/>
+                </Grid>
                 <!-- Precreated ones to select -->
                 <TextBlock Text="Precreated"
                            FontSize="18" FontFamily="Dubai Medium"/>
