@@ -149,6 +149,7 @@ namespace PasswordManager.View.Pages
                 if (confirm == MessageBoxResult.Yes)
                 {
                     DeleteItemAtIndex(itemIndex);
+                    UpdateDisplayedItems();
                 }
             }
         }
@@ -187,19 +188,41 @@ namespace PasswordManager.View.Pages
 
         private void updatePasswordBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult answer = MessageBox.Show("Sure you want to update the password?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            
-            if (answer == MessageBoxResult.Yes)
+            string username = Functions.Username;
+            string web = webpageEditBox.textBox.Text;
+            string email = usernameEditBox.textBox.Text;
+            string password = passwordEditBox.passwordBox.Password;
+
+            if (web == "" || web == null)
             {
-                DeleteItemAtIndex(itemIndex);
+                MessageBox.Show("All labels must be filled", "Caution", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (email == "" || email == null)
+            {
+                MessageBox.Show("All labels must be filled", "Caution", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (password == "" || password == null)
+            {
+                MessageBox.Show("Write a password", "Caution", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                MessageBoxResult answer = MessageBox.Show("Sure you want to update the password?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                string username = Functions.Username;
-                string web = webpageEditBox.textBox.Text;
-                string email = usernameEditBox.textBox.Text;
-                string password = passwordEditBox.passwordBox.Password;
+                if (answer == MessageBoxResult.Yes)
+                {
+                    DeleteItemAtIndex(itemIndex);
 
-                string[] variables = { username, web, email, password };
-                Functions.python_execution("save_password", variables);
+                    string[] variables = { username, web, email, password };
+                    Functions.python_execution("save_password", variables);
+
+                    UpdateDisplayedItems();
+
+                    editMenu.Visibility = Visibility.Hidden;
+                    leftMenu.Effect = null;
+                    rightPart.Effect = null;
+                }
+
             }
         }
     }
