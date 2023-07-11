@@ -11,6 +11,7 @@ namespace PasswordManager.View.UserControls
 
         public event EventHandler EditButtonClicked;
         public event EventHandler RemoveButtonClicked;
+        public event EventHandler PanelClick;
 
         private int index;
         private string webpagetxt;
@@ -67,6 +68,7 @@ namespace PasswordManager.View.UserControls
             InitializeComponent();
         }
 
+        // Visual
         private void StackPanel_MouseEnter(object sender, MouseEventArgs e)
         {
             panel.Background = Functions.get_color("#b2b2b2");
@@ -96,21 +98,14 @@ namespace PasswordManager.View.UserControls
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 
-        private void webpagelbl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                Process.Start($"http://{webpagetxt}");
-            }
-            catch
-            {
-                MessageBox.Show("Error opening the webpage", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
         private void editButton_MouseEnter(object sender, MouseEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void editButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
 
         private void removeButton_MouseEnter(object sender, MouseEventArgs e)
@@ -123,9 +118,17 @@ namespace PasswordManager.View.UserControls
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 
-        private void editButton_MouseLeave(object sender, MouseEventArgs e)
+
+        private void webpagelbl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Arrow;
+            try
+            {
+                Process.Start($"http://{webpagetxt}");
+            }
+            catch
+            {
+                MessageBox.Show("Error opening the webpage", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void editButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -136,6 +139,11 @@ namespace PasswordManager.View.UserControls
         private void removeButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             RemoveButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void panel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            PanelClick?.Invoke(this, e);
         }
     }
 }

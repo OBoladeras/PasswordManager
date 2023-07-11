@@ -78,6 +78,7 @@ namespace PasswordManager.View.Pages
                         // Event handle
                         item.EditButtonClicked += Item_EditButtonClicked;
                         item.RemoveButtonClicked += Item_RemoveButtonClicked;
+                        item.PanelClick += PanelClick;
 
 
                         if (i >= startIndex && i <= endIndex)
@@ -145,7 +146,7 @@ namespace PasswordManager.View.Pages
                 int itemIndex = clickedItem.Index;
                 PopUpWindow popUp = new PopUpWindow();
 
-                popUp.Message = $"Delete {clickedItem.WebpageTxt} password?";
+                popUp.Message = $"Sure you want to delete?";
                 popUp.Answer = "YesNo";
                 popUp.ShowDialog();
 
@@ -155,6 +156,27 @@ namespace PasswordManager.View.Pages
                     DeleteItemAtIndex(itemIndex);
                     UpdateDisplayedItems();
                 }
+
+                popUp.Close();
+            }
+        }
+
+        private void PanelClick(object sender, EventArgs e)
+        {
+            if (sender is PasswordListItem clickedItem)
+            {
+                string username = Functions.Username;
+                string web = clickedItem.WebpageTxt;
+                string email = clickedItem.GmailTxt;
+
+                string[] data = { username, web, email };
+                PopUpWindow.data = data;
+
+                PopUpWindow popUp = new PopUpWindow();
+
+                popUp.Answer = "ShowCopy";
+                popUp.ShowDialog();
+
 
                 popUp.Close();
             }
