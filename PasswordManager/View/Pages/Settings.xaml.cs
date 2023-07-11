@@ -48,11 +48,15 @@ namespace PasswordManager.View.Pages
         private void customColorBox_textChanged(object sender, EventArgs e)
         {
             string customColor = customColorBox.textBox.Text;
-            string clear = customColor.Substring(1);
-            bool isHexadecimal = int.TryParse(clear, System.Globalization.NumberStyles.HexNumber, null, out _);
+            bool isHexadecimal = false;
+            if (customColor.Length == 7)
+            {
+                string clear = customColor.Substring(1);
+                isHexadecimal = int.TryParse(clear, System.Globalization.NumberStyles.HexNumber, null, out _);
+            }
 
 
-            if (customColor.Length == 7 && customColor.StartsWith("#") && isHexadecimal)
+            if (customColor.StartsWith("#") && isHexadecimal)
             {
                 string[] colors = get_other_colors(customColor);
                 if (customColor == "#6C63FF")

@@ -10,7 +10,7 @@
         Icon="Images/key_icon.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
-    
+
     <Grid>
         <ContentControl x:Name="contentControl" />
     </Grid>

@@ -39,7 +39,8 @@
                                FontSize="15" />
 
                     <userControls:CustomButton x:Name="saveButton" Grid.RowSpan="2" Grid.Column="1"
-                                               Primary="Blue" HorizontalAlignment="Right"
+                                               Primary="#6699ff" Secundary="#b3ccff"
+                                               HorizontalAlignment="Right"
                                                Width="120" Text="Save" Padding="0, 3"
                                                MouseLeftButtonDown="saveButton_click"/>
                 </Grid>

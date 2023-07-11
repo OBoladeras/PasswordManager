@@ -11,11 +11,19 @@ namespace PasswordManager.View.Pages
         public Login()
         {
             InitializeComponent();
+
+            Functions.PrimaryColor = Functions.get_color("#6699ff");
+            Functions.SecundaryColor = Functions.get_color("#b3ccff");            
         }
 
 
         private void enterButton_click(object sender, MouseButtonEventArgs e)
         {
+            PopUpWindow popUp = new PopUpWindow();
+            popUp.Message = "Hello World";
+            popUp.Answer = "YesNo";
+            popUp.ShowDialog();
+
             check_login();
         }
 
