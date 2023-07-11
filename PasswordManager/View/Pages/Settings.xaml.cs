@@ -83,17 +83,28 @@ namespace PasswordManager.View.Pages
 
         private void saveButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string lineToAppend = $"colors;{colorsGlobal[0]};{colorsGlobal[1]};{colorsGlobal[2]};{colorsGlobal[3]}";
+            PopUpWindow popUp = new PopUpWindow();
 
-            List<string> lines = File.ReadAllLines(filePath)
-                .Where(line => !line.Contains("colors"))
-                .ToList();
+            try
+            {
+                string lineToAppend = $"colors;{colorsGlobal[0]};{colorsGlobal[1]};{colorsGlobal[2]};{colorsGlobal[3]}";
 
-            lines.Add(lineToAppend);
+                List<string> lines = File.ReadAllLines(filePath)
+                    .Where(line => !line.Contains("colors"))
+                    .ToList();
 
-            File.WriteAllLines(filePath, lines);
+                lines.Add(lineToAppend);
 
-            MessageBox.Show("Saved succesfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                File.WriteAllLines(filePath, lines);
+
+                popUp.Message = "Saved succesfully";
+                popUp.ShowDialog();
+            }
+            catch
+            {
+                popUp.Message = "Error saving settings";
+                popUp.ShowDialog();
+            }
         }
 
 

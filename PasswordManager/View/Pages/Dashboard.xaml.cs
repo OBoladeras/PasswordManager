@@ -143,10 +143,14 @@ namespace PasswordManager.View.Pages
             if (sender is PasswordListItem clickedItem)
             {
                 int itemIndex = clickedItem.Index;
+                PopUpWindow popUp = new PopUpWindow();
 
-                MessageBoxResult confirm = MessageBox.Show($"Delete {clickedItem.WebpageTxt} password?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                popUp.Message = $"Delete {clickedItem.WebpageTxt} password?";
+                popUp.Answer = "YesNo";
+                popUp.ShowDialog();
 
-                if (confirm == MessageBoxResult.Yes)
+
+                if (popUp.clickedItem == "yes")
                 {
                     DeleteItemAtIndex(itemIndex);
                     UpdateDisplayedItems();
@@ -188,6 +192,8 @@ namespace PasswordManager.View.Pages
 
         private void updatePasswordBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            PopUpWindow popUp = new PopUpWindow();
+
             string username = Functions.Username;
             string web = webpageEditBox.textBox.Text;
             string email = usernameEditBox.textBox.Text;
@@ -195,21 +201,26 @@ namespace PasswordManager.View.Pages
 
             if (web == "" || web == null)
             {
-                MessageBox.Show("All labels must be filled", "Caution", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                popUp.Message = "All labels must be filled";
+                popUp.ShowDialog();
             }
             else if (email == "" || email == null)
             {
-                MessageBox.Show("All labels must be filled", "Caution", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                popUp.Message = "All labels must be filled";
+                popUp.ShowDialog();
             }
             else if (password == "" || password == null)
             {
-                MessageBox.Show("Write a password", "Caution", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                popUp.Message = "Write a password";
+                popUp.ShowDialog();
             }
             else
             {
-                MessageBoxResult answer = MessageBox.Show("Sure you want to update the password?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                popUp.Message = "Sure you want to update the password?";
+                popUp.Answer = "YesNo";
+                popUp.ShowDialog();
 
-                if (answer == MessageBoxResult.Yes)
+                if (popUp.clickedItem == "Yes")
                 {
                     DeleteItemAtIndex(itemIndex);
 

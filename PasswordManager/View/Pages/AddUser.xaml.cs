@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PasswordManager.View.Pages
 {
@@ -9,6 +10,7 @@ namespace PasswordManager.View.Pages
         public AddUser()
         {
             InitializeComponent();
+
             lbluppercase.Color = "#000000";
             lbllowercase.Color = "#000000";
             lblnumber.Color = "#000000";
@@ -58,9 +60,47 @@ namespace PasswordManager.View.Pages
 
         }
 
+        private void CreateUser_Click(object sender, MouseButtonEventArgs e)
+        {
+            CreateUser();
+        }
+
+        private void backButton_click(object sender, MouseButtonEventArgs e)
+        {
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.load_page("login");
+        }
+
+        private void Username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                lblpassword.Focus();
+            }
+        }
+
+        private void lblpassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                PasswordConfirm.Focus();
+            }
+        }
+
+        private void PasswordConfirm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CreateUser();
+
+            }
+        }
+
 
         private void CreateUser()
         {
+            PopUpWindow popUp = new PopUpWindow();
+
             bool securePassword = true;
             string username = Username.textBox.Text;
             string password1 = lblpassword.passwordBox.Password;
@@ -68,15 +108,18 @@ namespace PasswordManager.View.Pages
 
             if (username == "")
             {
-                MessageBox.Show("Write a username", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                popUp.Message = "Write a username";
+                popUp.ShowDialog();
             }
             else if (password1 == "" || password2 == "")
             {
-                MessageBox.Show("Dont leave blank password", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                popUp.Message = "Dont leave blank password";
+                popUp.ShowDialog();
             }
             else if (password1 != password2)
             {
-                MessageBox.Show("Passwords don't match", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                popUp.Message = "Passwords don't match";
+                popUp.ShowDialog();
             }
             else
             {
@@ -99,7 +142,8 @@ namespace PasswordManager.View.Pages
 
                 if (!securePassword)
                 {
-                    MessageBox.Show("Check password security", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    popUp.Message = "Check password security";
+                    popUp.ShowDialog();
                 }
                 else
                 {
@@ -110,52 +154,16 @@ namespace PasswordManager.View.Pages
                     if (output.Contains("valid"))
                     {
                         Functions.python_execution("add_user", args);
+
                         var mainWindow = Window.GetWindow(this) as MainWindow;
                         mainWindow?.load_page("login");
                     }
                     else
                     {
-                        MessageBox.Show("Username already registered", "Caution", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        popUp.Message = "Username already registered";
+                        popUp.ShowDialog();
                     }
                 }
-            }
-        }
-
-
-        private void CreateUser_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            CreateUser();
-        }
-
-
-        private void backButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.load_page("login");
-        }
-
-        private void Username_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.Escape)
-            {
-                lblpassword.Focus();
-            }
-        }
-
-        private void lblpassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.Escape)
-            {
-                PasswordConfirm.Focus();
-            }
-        }
-
-        private void PasswordConfirm_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.Enter)
-            {
-                CreateUser();
-
             }
         }
     }

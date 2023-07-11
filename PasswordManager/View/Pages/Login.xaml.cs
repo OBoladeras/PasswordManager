@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace PasswordManager.View.Pages
 {
@@ -19,11 +19,6 @@ namespace PasswordManager.View.Pages
 
         private void enterButton_click(object sender, MouseButtonEventArgs e)
         {
-            PopUpWindow popUp = new PopUpWindow();
-            popUp.Message = "Hello World";
-            popUp.Answer = "YesNo";
-            popUp.ShowDialog();
-
             check_login();
         }
 
@@ -52,33 +47,50 @@ namespace PasswordManager.View.Pages
 
         private void check_login()
         {
+            PopUpWindow popUp = new PopUpWindow();
+            
             string filename = "check_login";
             string username = Username.textBox.Text;
             string password = Password.passwordBox.Password;
             string[] args = { username, password };
-            string result = "";
+            string result;
 
-            result = Functions.python_execution(filename, args);
-
-            if (result.Contains("valid"))
+            if (username == "" || username == null)
             {
-                Functions.Username = username;
-
-                load_settings();
-
-                var mainWindow = Window.GetWindow(this) as MainWindow;
-                mainWindow?.load_page("dashboard");
+                popUp.Message = "Write a username";
+                popUp.ShowDialog();
             }
-            else if (result.Contains("error1"))
+            else if (password == "" || password == null)
             {
-                MessageBox.Show("Invalid Password", "error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                popUp.Message = "Write a password";
+                popUp.ShowDialog();
             }
-            else if (result.Contains("error2"))
+            else
             {
-                MessageBox.Show("Invalid Username", "error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                result = Functions.python_execution(filename, args);
+
+                if (result.Contains("valid"))
+                {
+                    Functions.Username = username;
+
+                    load_settings();
+
+                    var mainWindow = Window.GetWindow(this) as MainWindow;
+                    mainWindow?.load_page("dashboard");
+                }
+                else if (result.Contains("error1"))
+                {
+                    popUp.Message = "Invalid Password";
+                    popUp.ShowDialog();
+                }
+                else if (result.Contains("error2"))
+                {
+                    popUp.Message = "Invalid Username";
+                    popUp.ShowDialog();
+                }
             }
         }
-
+        
         private void load_settings()
         {
             // Default settings
