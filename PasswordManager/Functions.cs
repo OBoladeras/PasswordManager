@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Media;
 
@@ -36,6 +38,7 @@ namespace PasswordManager
 
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
 
             process.Start();
             string output = process.StandardOutput.ReadToEnd();
@@ -58,6 +61,22 @@ namespace PasswordManager
             Brush brush = (Brush)brushConverter.ConvertFrom(hex);
 
             return brush;
+        }
+
+
+        public static void DeleteItemAtIndex(int index)
+        {
+            string filePath = $"../../Data/{Username}_data.txt";
+            
+            string[] lines = File.ReadAllLines(filePath);
+
+            if (index >= 0 && index < lines.Length)
+            {
+                List<string> linesList = new List<string>(lines);
+                linesList.RemoveAt(index);
+
+                File.WriteAllLines(filePath, linesList);
+            }
         }
     }
 }
