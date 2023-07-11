@@ -32,17 +32,26 @@
                         Grid.ColumnSpan="2" Margin="10">
 
                 <!-- Title -->
-                <StackPanel Orientation="Horizontal" x:Name="TitleItem">
-                    <TextBlock Text="Webpage" Margin="10" Width="160"
+                <Grid x:Name="TitleItem" Height="41">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Text="Webpage" Width="160" VerticalAlignment="Center"
                             FontFamily="Bacasime Antique" FontSize="16"/>
-                    <TextBlock Text="Username / Email" Margin="10" Width="230"
+                    <TextBlock Grid.Column="1" Text="Username / Email" VerticalAlignment="Center"
                             FontFamily="Bacasime Antique" FontSize="16"/>
-                    <TextBlock Text="Date" Margin="10" Width="120"
+                    <TextBlock Grid.Column="2" Text="Date" VerticalAlignment="Center"
                             FontFamily="Bacasime Antique" FontSize="16"/>
-                    <TextBlock Text="Actions" Margin="30, 10, 10, 10"
+                    <TextBlock Grid.Column="4" Grid.ColumnSpan="2" Text="Actions" VerticalAlignment="Center"
                             FontFamily="Bacasime Antique" FontSize="16"/>
-                </StackPanel>
-
+                </Grid>
+                
                 <!-- Items -->
 
             </StackPanel>

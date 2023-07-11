@@ -51,8 +51,8 @@ namespace PasswordManager
 
                     messageBox.Text = "*******";
                 }
-                else
-                        {
+                else        
+                {
                     Yes.Visibility = Visibility.Hidden;
                     No.Visibility = Visibility.Hidden;
                     Ok.Visibility = Visibility.Visible;
@@ -82,6 +82,17 @@ namespace PasswordManager
                 messageBox.Text = password;
                 closeShow = true;
                 Show.Text = "Close";
+
+                if (closeCopy)
+                {
+                    Yes.Visibility = Visibility.Hidden;
+                    No.Visibility = Visibility.Hidden;
+                    Ok.Visibility = Visibility.Visible;
+                    Show.Visibility = Visibility.Hidden;
+                    Copy.Visibility = Visibility.Hidden;
+
+                    Ok.Text = "Close";
+                }
             }
             else { Close(); }
         }
@@ -94,10 +105,20 @@ namespace PasswordManager
                 Clipboard.SetText(password);
                 closeCopy = true;
                 Copy.Text = "Close";
+
+                if (closeShow)
+                {
+                    Yes.Visibility = Visibility.Hidden;
+                    No.Visibility = Visibility.Hidden;
+                    Ok.Visibility = Visibility.Visible;
+                    Show.Visibility = Visibility.Hidden;
+                    Copy.Visibility = Visibility.Hidden;
+
+                    Ok.Text = "Close";
+                }
             }
             else { Close(); }
         }
-
 
         private void Ok_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
