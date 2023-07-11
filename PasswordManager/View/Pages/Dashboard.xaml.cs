@@ -155,6 +155,8 @@ namespace PasswordManager.View.Pages
                     DeleteItemAtIndex(itemIndex);
                     UpdateDisplayedItems();
                 }
+
+                popUp.Close();
             }
         }
 
@@ -233,8 +235,9 @@ namespace PasswordManager.View.Pages
                     leftMenu.Effect = null;
                     rightPart.Effect = null;
                 }
-
             }
+
+            popUp.Close();
         }
     }
 }

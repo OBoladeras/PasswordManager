@@ -89,6 +89,8 @@ namespace PasswordManager.View.Pages
                     popUp.ShowDialog();
                 }
             }
+
+            popUp.Close();
         }
         
         private void load_settings()

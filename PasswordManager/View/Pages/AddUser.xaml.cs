@@ -165,6 +165,8 @@ namespace PasswordManager.View.Pages
                     }
                 }
             }
+
+            popUp.Close();
         }
     }
 }

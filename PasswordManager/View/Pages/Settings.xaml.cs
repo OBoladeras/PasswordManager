@@ -105,8 +105,9 @@ namespace PasswordManager.View.Pages
                 popUp.Message = "Error saving settings";
                 popUp.ShowDialog();
             }
-        }
 
+            popUp.Close();
+        }
 
 
         private string[] get_other_colors(string originalColor)
