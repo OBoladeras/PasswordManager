@@ -1,6 +1,5 @@
 ﻿using PasswordManager.View.UserControls;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,23 +13,15 @@ namespace PasswordManager.View.Pages
     {
 
         private int currentPage = 1;
-        private int itemIndex = 0;
         private static string filePath = $"../../Data/{Functions.Username}_data.txt";
 
         public Dashboard()
         {
             InitializeComponent();
 
-            load_settings();
 
             UpdateDisplayedItems();
         }
-
-        private void load_settings()
-        {
-            editMenu.Background = Functions.Complementary;
-        }
-
 
         // List Items Handle
         private void DeleteChildItems()
@@ -124,18 +115,22 @@ namespace PasswordManager.View.Pages
         {
             if (sender is PasswordListItem clickedItem)
             {
-                itemIndex = clickedItem.Index;
 
                 BlurEffect blurEffect = new BlurEffect();
                 blurEffect.Radius = 8;
 
-                leftMenu.Effect = blurEffect;
-                rightPart.Effect = blurEffect;
+                mainGrid.Effect = blurEffect;
 
-                editMenu.Visibility = Visibility.Visible;
 
-                webpageEditBox.textBox.Text = clickedItem.WebpageTxt;
-                usernameEditBox.textBox.Text = clickedItem.GmailTxt;
+                EditMenu menu = new EditMenu();
+                menu.webpageEditBox.textBox.Text = clickedItem.WebpageTxt;
+                menu.usernameEditBox.textBox.Text = clickedItem.GmailTxt;
+                menu.itemIndex = clickedItem.Index;
+
+                menu.ShowDialog();
+
+                mainGrid.Effect = null;
+                UpdateDisplayedItems();
             }
         }
 
@@ -153,7 +148,7 @@ namespace PasswordManager.View.Pages
 
                 if (popUp.clickedItem == "yes")
                 {
-                    DeleteItemAtIndex(itemIndex);
+                    Functions.DeleteItemAtIndex(itemIndex);
                     UpdateDisplayedItems();
                 }
 
@@ -180,86 +175,6 @@ namespace PasswordManager.View.Pages
 
                 popUp.Close();
             }
-        }
-
-        public void DeleteItemAtIndex(int index)
-        {
-            string[] lines = File.ReadAllLines(filePath);
-
-            if (index >= 0 && index < lines.Length)
-            {
-                List<string> linesList = new List<string>(lines);
-                linesList.RemoveAt(index);
-
-                File.WriteAllLines(filePath, linesList);
-            }
-        }
-
-
-        // Pop Up window
-        private void closePopUpButton_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Hand;
-        }
-
-        private void closePopUpButton_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Arrow;
-        }
-
-        private void closePopUpButton_Click(object sender, MouseButtonEventArgs e)
-        {
-            editMenu.Visibility = Visibility.Hidden;
-            leftMenu.Effect = null;
-            rightPart.Effect = null;
-        }
-
-        private void updatePasswordBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            PopUpWindow popUp = new PopUpWindow();
-
-            string username = Functions.Username;
-            string web = webpageEditBox.textBox.Text;
-            string email = usernameEditBox.textBox.Text;
-            string password = passwordEditBox.passwordBox.Password;
-
-            if (web == "" || web == null)
-            {
-                popUp.Message = "All labels must be filled";
-                popUp.ShowDialog();
-            }
-            else if (email == "" || email == null)
-            {
-                popUp.Message = "All labels must be filled";
-                popUp.ShowDialog();
-            }
-            else if (password == "" || password == null)
-            {
-                popUp.Message = "Write a password";
-                popUp.ShowDialog();
-            }
-            else
-            {
-                popUp.Message = "Sure you want to update the password?";
-                popUp.Answer = "YesNo";
-                popUp.ShowDialog();
-
-                if (popUp.clickedItem == "Yes")
-                {
-                    DeleteItemAtIndex(itemIndex);
-
-                    string[] variables = { username, web, email, password };
-                    Functions.python_execution("save_password", variables);
-
-                    UpdateDisplayedItems();
-
-                    editMenu.Visibility = Visibility.Hidden;
-                    leftMenu.Effect = null;
-                    rightPart.Effect = null;
-                }
-            }
-
-            popUp.Close();
         }
     }
 }
