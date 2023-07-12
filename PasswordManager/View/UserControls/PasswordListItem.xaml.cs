@@ -127,7 +127,9 @@ namespace PasswordManager.View.UserControls
             }
             catch
             {
-                MessageBox.Show("Error opening the webpage", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                PopUpWindow popUp = new PopUpWindow();
+                popUp.Message = "Error opening the webpage";
+                popUp.ShowDialog();
             }
         }
 
@@ -144,6 +146,16 @@ namespace PasswordManager.View.UserControls
         private void panel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             PanelClick?.Invoke(this, e);
+        }
+
+        private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
     }
 }

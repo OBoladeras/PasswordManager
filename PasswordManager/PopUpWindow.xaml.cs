@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace PasswordManager
 {
@@ -10,10 +11,24 @@ namespace PasswordManager
         private bool closeShow = false;
         private bool closeCopy = false;
 
+        
         public PopUpWindow()
         {
             InitializeComponent();
+
+            // Blur main window
+            var blurEffect = new System.Windows.Media.Effects.BlurEffect();
+            blurEffect.Radius = 8;
+
+            var mainWindow = Application.Current.MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.Effect = blurEffect;
+            }
+
+            this.Closed += PopUpWindow_Closed;
         }
+
 
         private string message;
         private string answer;
@@ -124,6 +139,16 @@ namespace PasswordManager
         {
             clickedItem = "ok";
             Close();
+        }
+
+
+        private void PopUpWindow_Closed(object sender, EventArgs e)
+        {
+            var mainWindow = Application.Current.MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.Effect = null;
+            }
         }
     }
 }

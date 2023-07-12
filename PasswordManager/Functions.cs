@@ -42,7 +42,10 @@ namespace PasswordManager
 
             process.Start();
             string output = process.StandardOutput.ReadToEnd();
+
             process.WaitForExit();
+
+            output = output.Trim();
 
             Console.WriteLine("Python output:");
             Console.WriteLine(output);

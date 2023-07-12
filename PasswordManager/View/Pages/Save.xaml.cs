@@ -34,6 +34,8 @@ namespace PasswordManager.View.Pages
             webpageLbl.textBox.Text = "";
             usernameLbl.textBox.Text = "";
             passwordLbl.passwordBox.Password = "";
+            passwordLbl.placeHolder.Visibility= Visibility.Visible;
+            webpageLbl.textBox.Focus();
         }
 
         private void webpageLbl_KeyDown(object sender, KeyEventArgs e)
