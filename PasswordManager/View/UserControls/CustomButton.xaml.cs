@@ -1,5 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace PasswordManager.View.UserControls
 {
@@ -17,6 +19,7 @@ namespace PasswordManager.View.UserControls
         private int textsize;
         private string primary;
         private string secundary;
+        private string icon;
 
         public string Primary
         {
@@ -53,6 +56,17 @@ namespace PasswordManager.View.UserControls
                 placeHolder.FontSize = textsize;
             }
         }
+        public string Icon
+        {
+            get { return icon; }
+            set
+            {
+                icon = value;
+                string imagePath = $"pack://application:,,,/Images/{icon}.png";
+                placeHolderImage.Source = new BitmapImage(new Uri(imagePath));
+            }
+        }
+
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {

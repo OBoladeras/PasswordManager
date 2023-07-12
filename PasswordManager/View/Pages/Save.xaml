@@ -47,7 +47,7 @@
                                            PlaceHolder="Password"
                                            Margin="100, 15, 200, 15"/>
             <userControls:CustomButton x:Name="randomPasswordButton" Grid.Column="1" Grid.Row="3"
-                           HorizontalAlignment="Right"
+                           HorizontalAlignment="Right" Icon="random"
                            Width="80" Margin="0, 15, 100, 15"
                            MouseLeftButtonDown="randomPasswordButton_MouseLeftButtonDown">
                 <userControls:CustomButton.ToolTip>
