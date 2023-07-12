@@ -98,7 +98,14 @@ namespace PasswordManager.View.UserControls
         {
             if (primary == null || primary == "")
             {
-                button_obj.Background = Functions.PrimaryColor;
+                if (Functions.PrimaryColor != null)
+                {
+                    button_obj.Background = Functions.PrimaryColor;
+                }
+                else
+                {
+                    button_obj.Background = Functions.get_color("blue");
+                }
             }
             else
             {

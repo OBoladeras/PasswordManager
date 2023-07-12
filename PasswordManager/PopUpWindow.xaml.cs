@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PasswordManager
 {
@@ -8,7 +9,7 @@ namespace PasswordManager
         public static string[] data { get; set; }
 
         public string clickedItem;
-        private bool closeShow = false;
+        private bool closeSee = false;
         private bool closeCopy = false;
 
         
@@ -53,15 +54,15 @@ namespace PasswordManager
                     Yes.Visibility = Visibility.Visible;
                     No.Visibility = Visibility.Visible;
                     Ok.Visibility = Visibility.Hidden;
-                    Show.Visibility = Visibility.Hidden;
+                    See.Visibility = Visibility.Hidden;
                     Copy.Visibility = Visibility.Hidden;
                 }
-                else if (answer == "ShowCopy")
+                else if (answer == "SeeCopy")
                 {
                     Yes.Visibility = Visibility.Hidden;
                     No.Visibility = Visibility.Hidden;
                     Ok.Visibility = Visibility.Hidden;
-                    Show.Visibility = Visibility.Visible;
+                    See.Visibility = Visibility.Visible;
                     Copy.Visibility = Visibility.Visible;
 
                     messageBox.Text = "*******";
@@ -71,39 +72,39 @@ namespace PasswordManager
                     Yes.Visibility = Visibility.Hidden;
                     No.Visibility = Visibility.Hidden;
                     Ok.Visibility = Visibility.Visible;
-                    Show.Visibility = Visibility.Hidden;
+                    See.Visibility = Visibility.Hidden;
                     Copy.Visibility = Visibility.Hidden;
                 }
             }
         }
 
-        private void Yes_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Yes_Click(object sender, MouseButtonEventArgs e)
         {
             clickedItem = "yes";
             Close();
         }
-        private void No_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void No_Click(object sender, MouseButtonEventArgs e)
         {
             clickedItem = "no";
             Close();
         }
 
-        private void Show_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void See_Click(object sender, MouseButtonEventArgs e)
         {
-            if (!closeShow)
+            if (!closeSee)
             {
                 string password = Functions.python_execution("get_password", data);
 
                 messageBox.Text = password;
-                closeShow = true;
-                Show.Text = "Close";
+                closeSee = true;
+                See.Text = "Close";
 
                 if (closeCopy)
                 {
                     Yes.Visibility = Visibility.Hidden;
                     No.Visibility = Visibility.Hidden;
                     Ok.Visibility = Visibility.Visible;
-                    Show.Visibility = Visibility.Hidden;
+                    See.Visibility = Visibility.Hidden;
                     Copy.Visibility = Visibility.Hidden;
 
                     Ok.Text = "Close";
@@ -111,7 +112,7 @@ namespace PasswordManager
             }
             else { Close(); }
         }
-        private void Copy_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Copy_Click(object sender, MouseButtonEventArgs e)
         {
             if (!closeCopy)
             {
@@ -121,12 +122,12 @@ namespace PasswordManager
                 closeCopy = true;
                 Copy.Text = "Close";
 
-                if (closeShow)
+                if (closeSee)
                 {
                     Yes.Visibility = Visibility.Hidden;
                     No.Visibility = Visibility.Hidden;
                     Ok.Visibility = Visibility.Visible;
-                    Show.Visibility = Visibility.Hidden;
+                    See.Visibility = Visibility.Hidden;
                     Copy.Visibility = Visibility.Hidden;
 
                     Ok.Text = "Close";
@@ -135,7 +136,7 @@ namespace PasswordManager
             else { Close(); }
         }
 
-        private void Ok_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Ok_Click(object sender, MouseButtonEventArgs e)
         {
             clickedItem = "ok";
             Close();

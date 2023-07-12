@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -11,7 +12,6 @@ namespace PasswordManager.View.Pages
     {
 
         string[] colorsGlobal;
-        string filePath = $"../../Data/settings_{Functions.Username}.txt";
 
         public Settings()
         {
@@ -21,7 +21,7 @@ namespace PasswordManager.View.Pages
         }
 
 
-        private void purpleBox_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void purpleBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             string[] colors = get_other_colors("#6C63FF");
             set_colors(colors, 1);
@@ -29,7 +29,7 @@ namespace PasswordManager.View.Pages
             reload();
         }
 
-        private void greenBox_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void greenBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             string[] colors = get_other_colors("#00BFA6");
             set_colors(colors, 2);
@@ -37,7 +37,7 @@ namespace PasswordManager.View.Pages
             reload();
         }
 
-        private void magentaBox_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void magentaBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             string[] colors = get_other_colors("#F50057");
             set_colors(colors, 3);
@@ -81,21 +81,30 @@ namespace PasswordManager.View.Pages
             }
         }
 
-        private void saveButton_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void saveButton_click(object sender, MouseButtonEventArgs e)
         {
             PopUpWindow popUp = new PopUpWindow();
 
             try
             {
+                string settingsFilePath = $"../../Data/settings_{Functions.Username}.txt";
                 string lineToAppend = $"colors;{colorsGlobal[0]};{colorsGlobal[1]};{colorsGlobal[2]};{colorsGlobal[3]}";
 
-                List<string> lines = File.ReadAllLines(filePath)
-                    .Where(line => !line.Contains("colors"))
-                    .ToList();
+                if (File.Exists(settingsFilePath))
+                {
+                    List<string> lines = File.ReadAllLines(settingsFilePath)
+                                             .Where(line => !line.Contains("colors"))
+                                             .ToList();
 
-                lines.Add(lineToAppend);
+                    lines.Add(lineToAppend);
 
-                File.WriteAllLines(filePath, lines);
+                    File.WriteAllLines(settingsFilePath, lines);
+                }
+                else
+                {
+                    File.Create(settingsFilePath);
+                    File.WriteAllText(settingsFilePath, lineToAppend);
+                }
 
                 popUp.Message = "Saved succesfully";
                 popUp.ShowDialog();
@@ -108,6 +117,70 @@ namespace PasswordManager.View.Pages
 
             popUp.Close();
         }
+
+        private void deleteButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            PopUpWindow popUp = new PopUpWindow();
+            popUp.Message = "Sure you want to delete?";
+            popUp.Answer = "YesNo";
+            popUp.ShowDialog();
+
+            if (popUp.clickedItem == "yes")
+            {
+                string[] argv = { Functions.Username };
+
+                string encryptionKeyFile = Functions.python_execution("get_file_name", argv);
+                string userDataFile = $"../../Data/{Functions.Username}_data.txt";
+                string settingsFile = $"../../Data/settings_{Functions.Username}.txt";
+                string usersFile = "../../Data/users.txt";
+
+                string[] files = { encryptionKeyFile, userDataFile, settingsFile };
+
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch { Console.WriteLine($"File not found: {file}"); }
+                }
+                DeleteLineContainingWord(usersFile, Functions.Username);
+
+                Functions.Username = "";
+
+                var mainWindow = Window.GetWindow(this) as MainWindow;
+                mainWindow?.load_page("login");
+            }
+        }
+
+        private void DeleteLineContainingWord(string filePath, string wordToDelete)
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                string tempFilePath = filePath + ".tmp";
+
+                using (StreamWriter writer = new StreamWriter(tempFilePath))
+                {
+                    foreach (string line in lines)
+                    {
+                        if (!line.Contains(wordToDelete))
+                        {
+                            writer.WriteLine(line);
+                        }
+                    }
+                }
+
+                File.Delete(filePath);
+                File.Move(tempFilePath, filePath);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+
 
 
         private string[] get_other_colors(string originalColor)

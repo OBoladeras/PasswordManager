@@ -53,5 +53,8 @@ def save_password(site, username, password):
     with open(password_file, "a") as file:
         file.write(f"{site};{username};{currDate};{encoded_password}\n")
 
-
-save_password(web, email, password)
+try:
+    save_password(web, email, password)
+    print("valid")
+except:
+    print("error")

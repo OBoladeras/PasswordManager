@@ -44,7 +44,8 @@
                                                Width="120" Text="Save" Padding="0, 3"
                                                MouseLeftButtonDown="saveButton_click"/>
                 </Grid>
-                <!-- Precreated ones to select -->
+
+                <!-- Precreated color themes -->
                 <TextBlock Text="Precreated"
                            FontSize="18" FontFamily="Dubai Medium"/>
                 <Grid Height="200" Margin="0, 0, 0, 10">
@@ -63,7 +64,7 @@
 
                 </Grid>
 
-                <!-- Custom -->
+                <!-- Custom color themes -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -82,6 +83,30 @@
                     <userControls:InputBox x:Name="customColorBox" Grid.Column="1" Grid.RowSpan="2"
                                                Padding="200, 5, 0, 5"
                                            textChanged="customColorBox_textChanged"/>
+                </Grid>
+
+
+                <Grid Margin="0, 40, 0, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Delete Account"
+                               FontSize="22" FontFamily="Dubai Medium"/>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2"
+                               Text="Make sure you want to delete, this changes can't be undone"
+                               FontSize="15" />
+
+                    <userControls:CustomButton x:Name="sa" Grid.RowSpan="2" Grid.Column="1"
+                                               Primary="Red" Secundary="DarkRed"
+                                               HorizontalAlignment="Right"
+                                               Width="100" Text="Delete" Padding="0, 7"
+                                               MouseLeftButtonDown="deleteButton_Click"/>
                 </Grid>
             </StackPanel>
 
