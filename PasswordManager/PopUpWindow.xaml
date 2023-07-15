@@ -33,7 +33,7 @@
         <userControls:CustomButton x:Name="No" Grid.Row="1" Grid.Column="1" Margin="15, 8" Text="No" MouseLeftButtonDown="No_Click"/>
 
         <!-- Show Copy Option -->
-        <userControls:CustomButton x:Name="See" Grid.Row="1" Grid.Column="0" Margin="15, 8" Text="Show" MouseLeftButtonDown="Show_Click"/>
+        <userControls:CustomButton x:Name="See" Grid.Row="1" Grid.Column="0" Margin="15, 8" Text="Show" MouseLeftButtonDown="See_Click"/>
         <userControls:CustomButton x:Name="Copy" Grid.Row="1" Grid.Column="1" Margin="15, 8" Text="Copy" MouseLeftButtonDown="Copy_Click"/>
 
         <!-- Ok Option -->

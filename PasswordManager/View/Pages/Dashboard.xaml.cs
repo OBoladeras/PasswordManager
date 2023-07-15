@@ -169,7 +169,7 @@ namespace PasswordManager.View.Pages
 
                 PopUpWindow popUp = new PopUpWindow();
 
-                popUp.Answer = "ShowCopy";
+                popUp.Answer = "SeeCopy";
                 popUp.ShowDialog();
 
 
