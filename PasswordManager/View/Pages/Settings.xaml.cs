@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PasswordManager.View.Pages
 {
@@ -87,7 +87,7 @@ namespace PasswordManager.View.Pages
 
             try
             {
-                string settingsFilePath = $"../../Data/settings_{Functions.Username}.txt";
+                string settingsFilePath = $"Data/settings_{Functions.Username}.txt";
                 string lineToAppend = $"colors;{colorsGlobal[0]};{colorsGlobal[1]};{colorsGlobal[2]};{colorsGlobal[3]}";
 
                 if (File.Exists(settingsFilePath))
@@ -129,12 +129,11 @@ namespace PasswordManager.View.Pages
             {
                 string[] argv = { Functions.Username };
 
-                string encryptionKeyFile = Functions.python_execution("get_file_name", argv);
-                string userDataFile = $"../../Data/{Functions.Username}_data.txt";
-                string settingsFile = $"../../Data/settings_{Functions.Username}.txt";
-                string usersFile = "../../Data/users.txt";
+                string userDataFile = $"Data/{Functions.Username}_data.txt";
+                string settingsFile = $"Data/settings_{Functions.Username}.txt";
+                string usersFile = "Data/users.txt";
 
-                string[] files = { encryptionKeyFile, userDataFile, settingsFile };
+                string[] files = { userDataFile, settingsFile };
 
                 foreach (string file in files)
                 {

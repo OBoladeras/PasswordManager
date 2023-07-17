@@ -49,10 +49,8 @@ namespace PasswordManager.View.Pages
         {
             PopUpWindow popUp = new PopUpWindow();
             
-            string filename = "check_login";
             string username = Username.textBox.Text;
             string password = Password.passwordBox.Password;
-            string[] args = { username, password };
             string result;
 
             if (username == "" || username == null)
@@ -67,25 +65,29 @@ namespace PasswordManager.View.Pages
             }
             else
             {
-                result = Functions.python_execution(filename, args);
+                result = SecurityProcesses.Login(username, password);
 
                 if (result.Contains("valid"))
                 {
                     Functions.Username = username;
+                    // CHeck if files exist and if not creates them
+                    if (!File.Exists($"Data/{username}_data.txt"))
+                    {
+                        File.Create($"Data/{username}_data.txt");
+                    }
+                    if (!File.Exists($"Data/settings_{username}.txt"))
+                    {
+                        File.Create($"Data/settings_{username}.txt");
+                    }
 
                     load_settings();
 
                     var mainWindow = Window.GetWindow(this) as MainWindow;
                     mainWindow?.load_page("dashboard");
                 }
-                else if (result.Contains("error1"))
+                else
                 {
-                    popUp.Message = "Invalid Password";
-                    popUp.ShowDialog();
-                }
-                else if (result.Contains("error2"))
-                {
-                    popUp.Message = "Invalid Username";
+                    popUp.Message = result;
                     popUp.ShowDialog();
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using PasswordManager.View.Pages;
 using System;
+using System.IO;
 using System.Windows;
 
 namespace PasswordManager
@@ -10,6 +11,14 @@ namespace PasswordManager
         public MainWindow()
         {
             InitializeComponent();
+            if (!Directory.Exists("Data"))
+            {
+                Directory.CreateDirectory("Data");
+            }
+            if (!File.Exists("Data/users.txt"))
+            {
+                File.Create("Data/users.txt");
+            }
 
             load_page("login");
         }

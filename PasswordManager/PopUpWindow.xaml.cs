@@ -93,7 +93,7 @@ namespace PasswordManager
         {
             if (!closeSee)
             {
-                string password = Functions.python_execution("get_password", data);
+                string password = SecurityProcesses.Get_Password(data[0], data[1]);
 
                 messageBox.Text = password;
                 closeSee = true;
@@ -116,7 +116,7 @@ namespace PasswordManager
         {
             if (!closeCopy)
             {
-                string password = Functions.python_execution("get_password", data);
+                string password = SecurityProcesses.Get_Password(data[0], data[1]);
 
                 Clipboard.SetText(password);
                 closeCopy = true;

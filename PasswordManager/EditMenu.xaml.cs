@@ -59,9 +59,7 @@ namespace PasswordManager
                 if (popUp.clickedItem == "yes")
                 {
                     Functions.DeleteItemAtIndex(itemIndex);
-
-                    string[] variables = { username, web, email, password };
-                    Functions.python_execution("save_password", variables);
+                    SecurityProcesses.Save_Password(web, email, password);
 
                     Close();
                 }

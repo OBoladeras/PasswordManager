@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Media;
 
 namespace PasswordManager
@@ -21,43 +19,6 @@ namespace PasswordManager
         public static int ColorSelectedIndex { get; set; }
 
 
-
-        public static string python_execution(string script, string[] variables)
-        {
-            Process process = new Process();
-
-            process.StartInfo.FileName = "python";
-
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            process.StartInfo.Arguments = $"PythonFiles/{script}.py";
-            process.StartInfo.Arguments = $"{basePath}/../../PythonFiles/{script}.py";
-
-            string arguments = string.Join(" ", variables);
-
-            process.StartInfo.Arguments += $" {arguments}";
-
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.CreateNoWindow = true;
-
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-
-            process.WaitForExit();
-
-            output = output.Trim();
-
-            Console.WriteLine("Python output:");
-            Console.WriteLine(output);
-            return output;
-        }
-
-        public static string check_dependences()
-        {
-            return "";
-        }
-
-
         public static Brush get_color(string hex)
         {
             BrushConverter brushConverter = new BrushConverter();
@@ -69,7 +30,7 @@ namespace PasswordManager
 
         public static void DeleteItemAtIndex(int index)
         {
-            string filePath = $"../../Data/{Username}_data.txt";
+            string filePath = $"Data/{Username}_data.txt";
             
             string[] lines = File.ReadAllLines(filePath);
 

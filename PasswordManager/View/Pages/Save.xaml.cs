@@ -11,12 +11,11 @@ namespace PasswordManager.View.Pages
             InitializeComponent();
         }
 
+
         // Page Handle
         private void randomPasswordButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string[] variables = { };
-
-            string password = Functions.python_execution("generate_password", variables);
+            string password = SecurityProcesses.Generate_Password();
             passwordLbl.passwordBox.Password = password;
             passwordLbl.placeHolder.Visibility = Visibility.Hidden;
         }
@@ -25,11 +24,9 @@ namespace PasswordManager.View.Pages
         {
             PopUpWindow popUp = new PopUpWindow();
 
-            string username = Functions.Username;
             string web = webpageLbl.textBox.Text;
             string email = usernameLbl.textBox.Text;
             string password = passwordLbl.passwordBox.Password;
-            string[] variables = { username, web, email, password };
 
             if (web == null || web == "")
             {
@@ -51,8 +48,7 @@ namespace PasswordManager.View.Pages
             }
             else
             {
-                string status = Functions.python_execution("save_password", variables);
-                if (status.Contains("valid"))
+                if (SecurityProcesses.Save_Password(web, email, password))
                 {
                     popUp.Message = "Password Saved";
                 }

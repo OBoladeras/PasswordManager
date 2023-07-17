@@ -13,7 +13,7 @@ namespace PasswordManager.View.Pages
     {
 
         private int currentPage = 1;
-        private static string filePath = $"../../Data/{Functions.Username}_data.txt";
+        private static string filePath = $"Data/{Functions.Username}_data.txt";
 
         public Dashboard()
         {
@@ -53,8 +53,11 @@ namespace PasswordManager.View.Pages
                 string[] lines = File.ReadAllLines(filePath);
                 foreach (string line in lines)
                 {
-                    string[] fields = line.Split(';');
-                    if (fields.Length >= 3)
+
+                    string cleanLine = SecurityProcesses.Decrypt(line);
+
+                    string[] fields = cleanLine.Split(';');
+                    if (fields.Length == 4)
                     {
                         string webpage = fields[0];
                         string username = fields[1];
@@ -160,11 +163,10 @@ namespace PasswordManager.View.Pages
         {
             if (sender is PasswordListItem clickedItem)
             {
-                string username = Functions.Username;
                 string web = clickedItem.WebpageTxt;
                 string email = clickedItem.GmailTxt;
 
-                string[] data = { username, web, email };
+                string[] data = { web, email };
                 PopUpWindow.data = data;
 
                 PopUpWindow popUp = new PopUpWindow();

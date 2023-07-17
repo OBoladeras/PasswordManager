@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -147,13 +148,9 @@ namespace PasswordManager.View.Pages
                 }
                 else
                 {
-                    string[] args = new string[] { username, password1 };
-
-                    string output = Functions.python_execution("check_username", args);
-
-                    if (output.Contains("valid"))
+                    if (SecurityProcesses.Check_Valid_Username(username))
                     {
-                        Functions.python_execution("add_user", args);
+                        SecurityProcesses.Create_User(username, password1);
 
                         var mainWindow = Window.GetWindow(this) as MainWindow;
                         mainWindow?.load_page("login");
